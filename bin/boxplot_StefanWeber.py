@@ -10,7 +10,7 @@ def main():
 
     # alternative: instead of manually loading/reading the csv file you could also use the pandas package
     # but you will need to install it first ('pip install pandas') and import it to this file ('import pandas as pd')
-    data = pd.read_csv("./bin/mia-result/2020-10-11-12-34-02/results.csv",sep=';') 
+    data = pd.read_csv("./bin/mia-result/2020-09-25-20-18-59/results.csv",sep=';') 
     data.boxplot(by='LABEL', column=['DICE'], grid = False)
     plt.show()
     data.boxplot(by='LABEL', column=['HDRFDST'], grid = False)
