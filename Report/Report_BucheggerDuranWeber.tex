@@ -1,17 +1,57 @@
+
 \documentclass[conference]{IEEEtran}
+% \documentclass[conference]{IEEEtran
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
-\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
 \usepackage{algorithmic}
-\usepackage{graphicx}
-\usepackage{textcomp}
-\usepackage{xcolor}
+\usepackage{graphicx} 
+\graphicspath{ {./pics/} }
+\usepackage{subfig}
+\usepackage{wrapfig}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% This is to include code
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstdefinestyle{Python}{
+    language        = Python,
+    basicstyle      = \ttfamily,
+    keywordstyle    = \color{blue},
+    keywordstyle    = [2] \color{teal},
+    stringstyle     = \color{green},
+    commentstyle    = \color{red}\ttfamily
+}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
 \begin{document}
 
-\title{Title}
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\title{MIALab Project HS2020}
 
 \author{\IEEEauthorblockN{1\textsuperscript{st} Thomas Buchegger}
 \IEEEauthorblockA{\textit{University of Bern} \\
@@ -28,15 +68,43 @@ carolina.duran@students.unibe.ch}
 Bern, Switzerland \\
 stefan.weber@students.unibe.ch}
 }
+\date{03.06.2020}
 
 \maketitle
 
+
+
+% --------------------------------------------------------------
+% Abstract
+% --------------------------------------------------------------
+
+\newpage
+
 \begin{abstract}
 Here is the abstract
+
+
 \end{abstract}
+
+\newpage
+
+% --------------------------------------------------------------
+% Introduction
+% --------------------------------------------------------------
 
 \section{Introduction}
 Here is the introduction
+
+Our hypothesis: "Image normalization has an important influence on the segmentation".
+
+Some questions which could be answered:
+Currently, z score normalization is implemented.
+\begin{itemize}
+\item Are there more powerful normalization methods?
+\item Is normalization really needed?
+\item Is the provided data already normalized in some way?
+\item Can you also unnormalize data to show a negative effect?
+\end{itemize}
 
 \section{Methodology}
 
