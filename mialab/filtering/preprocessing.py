@@ -6,6 +6,7 @@ import warnings
 
 import pymia.filtering.filter as pymia_fltr
 import SimpleITK as sitk
+import numpy as np
 
 
 class ImageNormalization(pymia_fltr.Filter):
@@ -30,11 +31,24 @@ class ImageNormalization(pymia_fltr.Filter):
 
         # todo: normalize the image using numpy
         #warnings.warn('No normalization implemented. Returning unprocessed image.')
+        n_type = "sitkN"
 
-        img_arr = (img_arr - img_arr.mean()) / img_arr.std()
+        sitk.Normalize(image)
+
+        # Z Score Normalization
+        if n_type == "zScore":
+            img_arr = (img_arr - img_arr.mean()) / img_arr.std()
+
+        # MinMax Normalization
+        if n_type == "minMax":
+            img_arr = (img_arr - np.min(img_arr)) / (np.max(img_arr) - np.min(img_arr))
 
         img_out = sitk.GetImageFromArray(img_arr)
         img_out.CopyInformation(image)
+
+        # sitk Normalization 
+        if n_type == "sitkN":
+            img_out = sitk.Normalize(image)
 
         return img_out
 
