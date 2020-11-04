@@ -7,7 +7,25 @@ import warnings
 import pymia.filtering.filter as pymia_fltr
 import SimpleITK as sitk
 import numpy as np
+import nibabel as nib
 
+import os
+
+from intensity_normalization.normalize import fcm
+from intensity_normalization.normalize import whitestripe
+
+class ImageNormalizationParameters(pymia_fltr.FilterParams):
+    """Image registration parameters."""
+
+    def __init__(self, path: dict, weighted: int):
+        """Initializes a new instance of the ImageNormalizationParameters
+
+        Args:
+            path (dict): Path to current image.
+            weighted (int): whether T1 or T2 weighted
+        """
+        self.path = path
+        self.weighted = weighted
 
 class ImageNormalization(pymia_fltr.Filter):
     """Represents a normalization filter."""
@@ -16,7 +34,7 @@ class ImageNormalization(pymia_fltr.Filter):
         """Initializes a new instance of the ImageNormalization class."""
         super().__init__()
 
-    def execute(self, image: sitk.Image, params: pymia_fltr.FilterParams = None) -> sitk.Image:
+    def execute(self, image: sitk.Image, params: ImageNormalizationParameters = None) -> sitk.Image:
         """Executes a normalization on an image.
 
         Args:
@@ -27,13 +45,17 @@ class ImageNormalization(pymia_fltr.Filter):
             sitk.Image: The normalized image.
         """
 
+        path = params.path
+        weighted = params.weighted
+        brain_mask = nib.load(os.path.join(path, 'Brainmasknative.nii.gz'))
+
         img_arr = sitk.GetArrayFromImage(image)
 
         # todo: normalize the image using numpy
         #warnings.warn('No normalization implemented. Returning unprocessed image.')
-        n_type = "sitkN"
+        n_type = "fcm"
 
-        sitk.Normalize(image)
+        #sitk.Normalize(image)
 
         # Z Score Normalization
         if n_type == "zScore":
@@ -49,6 +71,47 @@ class ImageNormalization(pymia_fltr.Filter):
         # sitk Normalization 
         if n_type == "sitkN":
             img_out = sitk.Normalize(image)
+
+        # Whitestripe Normalization
+        if n_type == "whitestripe":
+            img = None
+            contrast = None
+
+            if weighted == 1:
+                img = nib.load(os.path.join(path, 'T1native.nii.gz'))
+                contrast = 'T1'
+            elif weighted == 2:
+                img = nib.load(os.path.join(path, 'T2native.nii.gz'))
+                contrast = 'T2'
+            indices = whitestripe.whitestripe(img, contrast, mask=brain_mask)
+            normalized = whitestripe.whitestripe_norm(img, indices)
+
+            normalizedNP = np.array(normalized.dataobj)
+            img_out = sitk.GetImageFromArray(normalizedNP)
+            #img_out.CopyInformation(image)
+
+        # Fuzzy-C Means Normalization
+        if n_type == "fcm":
+            img = None
+
+            if weighted == 1:
+                img = nib.load(os.path.join(path, 'T1native.nii.gz'))
+            elif weighted ==2:
+                img = nib.load(os.path.join(path, 'T2native.nii.gz'))
+            
+            # find the mask of this tissue type (wm, gm, or csf)
+            wm_mask = fcm.find_tissue_mask(img, brain_mask, tissue_type="wm")
+            normalized = fcm.fcm_normalize(img, wm_mask)
+
+            normalizedNP = np.array(normalized.dataobj)
+            img_out = sitk.GetImageFromArray(normalizedNP)
+            #img_out.CopyInformation(image)
+
+        # Histogram Matching Normalization
+        if n_type == "histMatching":
+            img_out = None
+
+
 
         return img_out
 

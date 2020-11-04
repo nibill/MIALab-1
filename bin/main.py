@@ -55,15 +55,15 @@ def main(result_dir: str, data_atlas_dir: str, data_train_dir: str, data_test_di
 
     # crawl the training image directories
     crawler = futil.FileSystemDataCrawler(data_train_dir,
-                                          LOADING_KEYS,
-                                          futil.BrainImageFilePathGenerator(),
-                                          futil.DataDirectoryFilter())
+                                        LOADING_KEYS,
+                                        futil.BrainImageFilePathGenerator(),
+                                        futil.DataDirectoryFilter())
     pre_process_params = {'skullstrip_pre': True,
-                          'normalization_pre': True,
-                          'registration_pre': True,
-                          'coordinates_feature': True,
-                          'intensity_feature': True,
-                          'gradient_intensity_feature': True}
+                        'normalization_pre': True,
+                        'registration_pre': True,
+                        'coordinates_feature': True,
+                        'intensity_feature': True,
+                        'gradient_intensity_feature': True}
 
     # load images for training and pre-process
     images = putil.pre_process_batch(crawler.data, pre_process_params, multi_process=False)
@@ -93,9 +93,9 @@ def main(result_dir: str, data_atlas_dir: str, data_train_dir: str, data_test_di
 
     # crawl the training image directories
     crawler = futil.FileSystemDataCrawler(data_test_dir,
-                                          LOADING_KEYS,
-                                          futil.BrainImageFilePathGenerator(),
-                                          futil.DataDirectoryFilter())
+                                        LOADING_KEYS,
+                                        futil.BrainImageFilePathGenerator(),
+                                        futil.DataDirectoryFilter())
 
     # load images for testing and pre-process
     pre_process_params['training'] = False
@@ -126,11 +126,11 @@ def main(result_dir: str, data_atlas_dir: str, data_train_dir: str, data_test_di
     # post-process segmentation and evaluate with post-processing
     post_process_params = {'simple_post': True}
     images_post_processed = putil.post_process_batch(images_test, images_prediction, images_probabilities,
-                                                     post_process_params, multi_process=True)
+                                                    post_process_params, multi_process=True)
 
     for i, img in enumerate(images_test):
         evaluator.evaluate(images_post_processed[i], img.images[structure.BrainImageTypes.GroundTruth],
-                           img.id_ + '-PP')
+                                    img.id_ + '-PP')
 
         # save results
         sitk.WriteImage(images_prediction[i], os.path.join(result_dir, images_test[i].id_ + '_SEG.mha'), True)

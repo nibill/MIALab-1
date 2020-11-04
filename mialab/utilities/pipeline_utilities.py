@@ -195,7 +195,7 @@ def pre_process(id_: str, paths: dict, **kwargs) -> structure.BrainImage:
     if kwargs.get('registration_pre', False):
         pipeline_brain_mask.add_filter(fltr_prep.ImageRegistration())
         pipeline_brain_mask.set_param(fltr_prep.ImageRegistrationParameters(atlas_t1, img.transformation, True),
-                                      len(pipeline_brain_mask.filters) - 1)
+                                    len(pipeline_brain_mask.filters) - 1)
 
     # execute pipeline on the brain mask image
     img.images[structure.BrainImageTypes.BrainMask] = pipeline_brain_mask.execute(
@@ -206,13 +206,14 @@ def pre_process(id_: str, paths: dict, **kwargs) -> structure.BrainImage:
     if kwargs.get('registration_pre', False):
         pipeline_t1.add_filter(fltr_prep.ImageRegistration())
         pipeline_t1.set_param(fltr_prep.ImageRegistrationParameters(atlas_t1, img.transformation),
-                              len(pipeline_t1.filters) - 1)
+                            len(pipeline_t1.filters) - 1)
     if kwargs.get('skullstrip_pre', False):
         pipeline_t1.add_filter(fltr_prep.SkullStripping())
         pipeline_t1.set_param(fltr_prep.SkullStrippingParameters(img.images[structure.BrainImageTypes.BrainMask]),
-                              len(pipeline_t1.filters) - 1)
+                            len(pipeline_t1.filters) - 1)
     if kwargs.get('normalization_pre', False):
         pipeline_t1.add_filter(fltr_prep.ImageNormalization())
+        pipeline_t1.set_param(fltr_prep.ImageNormalizationParameters(path, 1), len(pipeline_t1.filters) -1)
 
     # execute pipeline on the T1w image
     img.images[structure.BrainImageTypes.T1w] = pipeline_t1.execute(img.images[structure.BrainImageTypes.T1w])
@@ -222,13 +223,14 @@ def pre_process(id_: str, paths: dict, **kwargs) -> structure.BrainImage:
     if kwargs.get('registration_pre', False):
         pipeline_t2.add_filter(fltr_prep.ImageRegistration())
         pipeline_t2.set_param(fltr_prep.ImageRegistrationParameters(atlas_t2, img.transformation),
-                              len(pipeline_t2.filters) - 1)
+                            len(pipeline_t2.filters) - 1)
     if kwargs.get('skullstrip_pre', False):
         pipeline_t2.add_filter(fltr_prep.SkullStripping())
         pipeline_t2.set_param(fltr_prep.SkullStrippingParameters(img.images[structure.BrainImageTypes.BrainMask]),
-                              len(pipeline_t2.filters) - 1)
+                            len(pipeline_t2.filters) - 1)
     if kwargs.get('normalization_pre', False):
         pipeline_t2.add_filter(fltr_prep.ImageNormalization())
+        pipeline_t2.set_param(fltr_prep.ImageNormalizationParameters(path, 2), len(pipeline_t1.filters) -1)
 
     # execute pipeline on the T2w image
     img.images[structure.BrainImageTypes.T2w] = pipeline_t2.execute(img.images[structure.BrainImageTypes.T2w])
@@ -238,7 +240,7 @@ def pre_process(id_: str, paths: dict, **kwargs) -> structure.BrainImage:
     if kwargs.get('registration_pre', False):
         pipeline_gt.add_filter(fltr_prep.ImageRegistration())
         pipeline_gt.set_param(fltr_prep.ImageRegistrationParameters(atlas_t1, img.transformation, True),
-                              len(pipeline_gt.filters) - 1)
+                            len(pipeline_gt.filters) - 1)
 
     # execute pipeline on the ground truth image
     img.images[structure.BrainImageTypes.GroundTruth] = pipeline_gt.execute(
@@ -279,8 +281,8 @@ def post_process(img: structure.BrainImage, segmentation: sitk.Image, probabilit
     if kwargs.get('crf_post', False):
         pipeline.add_filter(fltr_postp.DenseCRF())
         pipeline.set_param(fltr_postp.DenseCRFParams(img.images[structure.BrainImageTypes.T1w],
-                                                     img.images[structure.BrainImageTypes.T2w],
-                                                     probability), len(pipeline.filters) - 1)
+                                                    img.images[structure.BrainImageTypes.T2w],
+                                                    probability), len(pipeline.filters) - 1)
 
     return pipeline.execute(segmentation)
 
@@ -300,18 +302,18 @@ def init_evaluator() -> eval_.Evaluator:
 
     # define the labels to evaluate
     labels = {1: 'WhiteMatter',
-              2: 'GreyMatter',
-              3: 'Hippocampus',
-              4: 'Amygdala',
-              5: 'Thalamus'
-              }
+            2: 'GreyMatter',
+            3: 'Hippocampus',
+            4: 'Amygdala',
+            5: 'Thalamus'
+            }
 
     evaluator = eval_.SegmentationEvaluator(metrics, labels)
     return evaluator
 
 
 def pre_process_batch(data_batch: t.Dict[structure.BrainImageTypes, structure.BrainImage],
-                      pre_process_params: dict=None, multi_process=True) -> t.List[structure.BrainImage]:
+                    pre_process_params: dict=None, multi_process=True) -> t.List[structure.BrainImage]:
     """Loads and pre-processes a batch of images.
 
     The pre-processing includes:
@@ -340,8 +342,8 @@ def pre_process_batch(data_batch: t.Dict[structure.BrainImageTypes, structure.Br
 
 
 def post_process_batch(brain_images: t.List[structure.BrainImage], segmentations: t.List[sitk.Image],
-                       probabilities: t.List[sitk.Image], post_process_params: dict=None,
-                       multi_process=True) -> t.List[sitk.Image]:
+                    probabilities: t.List[sitk.Image], post_process_params: dict=None,
+                    multi_process=True) -> t.List[sitk.Image]:
     """ Post-processes a batch of images.
 
     Args:
@@ -360,7 +362,7 @@ def post_process_batch(brain_images: t.List[structure.BrainImage], segmentations
     param_list = zip(brain_images, segmentations, probabilities)
     if multi_process:
         pp_images = mproc.MultiProcessor.run(post_process, param_list, post_process_params,
-                                             mproc.PostProcessingPickleHelper)
+                                            mproc.PostProcessingPickleHelper)
     else:
         pp_images = [post_process(img, seg, prob, **post_process_params) for img, seg, prob in param_list]
     return pp_images
