@@ -53,7 +53,7 @@ class ImageNormalization(pymia_fltr.Filter):
 
         # todo: normalize the image using numpy
         #warnings.warn('No normalization implemented. Returning unprocessed image.')
-        n_type = "fcm"
+        n_type = "histMatching"
 
         #sitk.Normalize(image)
 
@@ -86,9 +86,11 @@ class ImageNormalization(pymia_fltr.Filter):
             indices = whitestripe.whitestripe(img, contrast, mask=brain_mask)
             normalized = whitestripe.whitestripe_norm(img, indices)
 
-            normalizedNP = np.array(normalized.dataobj)
-            img_out = sitk.GetImageFromArray(normalizedNP)
-            #img_out.CopyInformation(image)
+            nib.save(normalized, os.path.join(path, 'wsnormalized.nii.gz'))
+            img_out = sitk.ReadImage(os.path.join(path, 'wsnormalized.nii.gz'))
+
+            if os.path.exists(os.path.join(path, 'wsnormalized.nii.gz')):
+                os.remove(os.path.join(path, 'wsnormalized.nii.gz'))
 
         # Fuzzy-C Means Normalization
         if n_type == "fcm":
@@ -103,16 +105,25 @@ class ImageNormalization(pymia_fltr.Filter):
             wm_mask = fcm.find_tissue_mask(img, brain_mask, tissue_type="wm")
             normalized = fcm.fcm_normalize(img, wm_mask)
 
-            normalizedNP = np.array(normalized.dataobj)
-            img_out = sitk.GetImageFromArray(normalizedNP)
-            #img_out.CopyInformation(image)
+            nib.save(normalized, os.path.join(path, 'fcmnormalized.nii.gz'))
+            img_out = sitk.ReadImage(os.path.join(path, 'fcmnormalized.nii.gz'))
+
+            if os.path.exists(os.path.join(path, 'fcmnormalized.nii.gz')):
+                os.remove(os.path.join(path, 'fcmnormalized.nii.gz'))
+            
 
         # Histogram Matching Normalization
         if n_type == "histMatching":
-            img_out = None
+            refImg = None
 
+            allDataPath = os.path.dirname(path)
+            firstFolder = os.listdir(allDataPath)[0]
+            if weighted == 1:
+                refImg = sitk.ReadImage(os.path.join(allDataPath, firstFolder, 'T1native.nii.gz'))
+            elif weighted == 2:
+                refImg = sitk.ReadImage(os.path.join(allDataPath, firstFolder, 'T2native.nii.gz'))
 
-
+            img_out = sitk.HistogramMatching(image, refImg)
         return img_out
 
     def __str__(self):
