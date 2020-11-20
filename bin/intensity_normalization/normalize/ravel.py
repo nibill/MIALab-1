@@ -6,7 +6,7 @@ intensity_normalization.normalize.ravel
 Use RAVEL [1] to intensity normalize a population of MR images
 
 References:
-   ﻿[1] J. P. Fortin, E. M. Sweeney, J. Muschelli, C. M. Crainiceanu,
+﻿[1] J. P. Fortin, E. M. Sweeney, J. Muschelli, C. M. Crainiceanu,
         and R. T. Shinohara, “Removing inter-subject technical variability
         in magnetic resonance imaging studies,” NeuroImage, vol. 132,
         pp. 198–212, 2016.
@@ -91,13 +91,13 @@ def ravel_normalize(img_dir, mask_dir, contrast, output_dir=None, write_to_disk=
 
     # get parameters necessary and setup the V array
     V, Vc = image_matrix(img_fns, contrast, masks=mask_fns, do_whitestripe=do_whitestripe,
-                         return_ctrl_matrix=True, membership_thresh=membership_thresh,
-                         do_registration=do_registration, smoothness=segmentation_smoothness,
-                         use_fcm=use_fcm, csf_masks=csf_masks)
+                        return_ctrl_matrix=True, membership_thresh=membership_thresh,
+                        do_registration=do_registration, smoothness=segmentation_smoothness,
+                        use_fcm=use_fcm, csf_masks=csf_masks)
 
     # estimate the unwanted factors Z
     _, _, vh = np.linalg.svd(Vc, full_matrices=False) if not sparse_svd else \
-               svds(bsr_matrix(Vc), k=b, return_singular_vectors='vh')
+                svds(bsr_matrix(Vc), k=b, return_singular_vectors='vh')
     Z = vh.T[:, 0:b]
 
     # perform the ravel correction

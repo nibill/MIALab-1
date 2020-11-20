@@ -13,6 +13,9 @@ import os
 
 from intensity_normalization.normalize import fcm
 from intensity_normalization.normalize import whitestripe
+from intensity_normalization.normalize import gmm
+from intensity_normalization.normalize import lsq
+from intensity_normalization.normalize import ravel
 
 class ImageNormalizationParameters(pymia_fltr.FilterParams):
     """Image registration parameters."""
@@ -135,6 +138,31 @@ class ImageNormalization(pymia_fltr.Filter):
                 refImg = sitk.ReadImage(os.path.join(allDataPath, firstFolder, 'T2native.nii.gz'))
 
             img_out = sitk.HistogramMatching(image, refImg)
+        
+
+        # Gaussian Mixture Model Normalization
+        if n_type == "gmm":
+            img = None
+            sitk.WriteImage(image, 'Temp.nii.gz')
+            img = nib.load('Temp.nii.gz')
+
+            if weighted == 1:
+                contrast = 'T1'
+            elif weighted == 2:
+                contrast = 'T2'
+
+            normalized = gmm.gmm_normalize(img, brain_mask=None, norm_value=1, contrast=contrast, bg_mask=None, wm_peak=None)
+
+            nib.save(normalized, 'Normalized.nii.gz')
+            img_out = sitk.ReadImage('Normalized.nii.gz')
+
+            if os.path.exists('Temp.nii.gz'):
+                os.remove('Temp.nii.gz')
+                
+            if os.path.exists('Normalized.nii.gz'):
+                os.remove('Normalized.nii.gz')
+
+            img_out.CopyInformation(image)
         return img_out
 
     def __str__(self):
