@@ -1,0 +1,4 @@
+oral feedback about MIALab Presentation:
+Viualization --> better present teh results in box plots, not MS Office, better do it with python
+hypper parameter --> do that. define 2-3 parameter sets for hyper peremeter and then run all normalizations through this
+look more into details --> some methods improve the result. Which one do so? not only overall performance, but also for each patient? Single sturcture analysing more or anaylyse per patient the reuslts
