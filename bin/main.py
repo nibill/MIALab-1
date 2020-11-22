@@ -54,6 +54,8 @@ def main(result_dir: str, data_atlas_dir: str, data_train_dir: str, data_test_di
     print('-' * 5, 'Training...')
 
     # crawl the training image directories
+    Tune = False
+
     crawler = futil.FileSystemDataCrawler(data_train_dir,
                                         LOADING_KEYS,
                                         futil.BrainImageFilePathGenerator(),
@@ -73,6 +75,40 @@ def main(result_dir: str, data_atlas_dir: str, data_train_dir: str, data_test_di
     labels_train = np.concatenate([img.feature_matrix[1] for img in images]).squeeze()
 
     #warnings.warn('Random forest parameters not properly set.')
+
+    if Tune:
+        from sklearn.model_selection import GridSearchCV
+        from sklearn.metrics import classification_report
+
+        tuned_parameters = [{'max_features': [images[0].feature_matrix[0].shape[1]], 
+                            'n_estimators': range(1,30),
+                            'max_depth': range(1,30),
+                            'random_state': [42]}]
+        
+        print("# Tuning hyper-parameters for %s" % str(pre_process_params))
+        print()
+
+        forest = GridSearchCV(
+            sk_ensemble.RandomForestClassifier(), tuned_parameters
+        )
+        forest.fit(data_train, labels_train)
+
+        print("Best parameters set found on development set:")
+        print()
+        print(forest.best_params_)
+        print()
+        print("Grid scores on development set:")
+        print()
+        means = forest.cv_results_['mean_test_score']
+        stds = forest.cv_results_['std_test_score']
+        for mean, std, params in zip(means, stds, forest.cv_results_['params']):
+            print("%0.3f (+/-%0.03f) for %r"
+                % (mean, std * 2, params))
+        print()
+
+    
+    
+
     forest = sk_ensemble.RandomForestClassifier(max_features=images[0].feature_matrix[0].shape[1],
                                                 n_estimators=10,
                                                 max_depth=10)
@@ -124,17 +160,17 @@ def main(result_dir: str, data_atlas_dir: str, data_train_dir: str, data_test_di
         images_probabilities.append(image_probabilities)
 
     # post-process segmentation and evaluate with post-processing
-    post_process_params = {'simple_post': True}
-    images_post_processed = putil.post_process_batch(images_test, images_prediction, images_probabilities,
-                                                    post_process_params, multi_process=True)
+    #post_process_params = {'simple_post': True}
+    #images_post_processed = putil.post_process_batch(images_test, images_prediction, images_probabilities,
+    #                                                post_process_params, multi_process=True)
 
     for i, img in enumerate(images_test):
-        evaluator.evaluate(images_post_processed[i], img.images[structure.BrainImageTypes.GroundTruth],
-                                    img.id_ + '-PP')
+        #evaluator.evaluate(images_post_processed[i], img.images[structure.BrainImageTypes.GroundTruth],
+        #                            img.id_ + '-PP')
 
         # save results
         sitk.WriteImage(images_prediction[i], os.path.join(result_dir, images_test[i].id_ + '_SEG.mha'), True)
-        sitk.WriteImage(images_post_processed[i], os.path.join(result_dir, images_test[i].id_ + '_SEG-PP.mha'), True)
+        #sitk.WriteImage(images_post_processed[i], os.path.join(result_dir, images_test[i].id_ + '_SEG-PP.mha'), True)
 
     # use two writers to report the results
     os.makedirs(result_dir, exist_ok=True)  # generate result directory, if it does not exists
