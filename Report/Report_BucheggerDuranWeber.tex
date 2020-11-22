@@ -8,7 +8,7 @@
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{algorithmic}
 \usepackage{graphicx} 
-\graphicspath{ {./pics/} }
+\graphicspath{ {./figures/} }
 \usepackage{subfig}
 \usepackage{wrapfig}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
@@ -145,10 +145,58 @@ For the research:
 
 
 \section{Methodology}
-
-
 \subsection{Data}
+	The data we used was provided by the Medical Image Analysis Lab team at the University of Bern. Overall, our dataset consists of 32 MRI,
+	out of which 21 we used for training and 11 for testing our model. From each patient we have a T1-weighted and a T2-weighted image. Each MRI file
+	is of the size 118x118x217.
+\subsection{Model}
+	The model we used is a Random Forest classifier with which we combined different parameters with all used normalization techniques. Which parameters
+	lead to which result can be found in the results section. For normalization techniques, we used the following:
+	\begin{itemize}
+		\item zScore
+		\begin{equation}
+			z = \frac{x - \mu}{\sigma}
+		\end{equation}
+		\item minMax
+		\begin{equation}
+			z = \frac{x - x_{min}}{x_{max} - x_{min}}
+		\end{equation}
+		\item stikN
+		\item Whitestripe
+		\item Fuzzy-C means\\
+		With fuzzy c-means we find a mask for a specified tissue type given a T1w image and its brain mask. Create a tissue mask
+		from that T1w image's FCM tissue mask. Then we can use that tissue mask as input to the func again, where the tissue mask is
+		used to find an approximate mean of the tissue intensity in	another target contrast, and move it to some standard value.
+		\item Histogram Matching
+		\item Gaussian Mixture Model
+	\end{itemize}
 \subsection{Evaluation}
+	For this paper, we evaluated our used normalization techniques on our inhouse T1-weighted and T2-weighted MRI data sets. 
+	We chose the Dice Similarity Coefficient (DCS) as well as the Hausdorff distance to evaluate the different normalization techniques.
+	Dice Similarity Coefficient returns as a quality metric how much two regions overlap and is, therefore, a useful metric for segmentation.
+	The dice coefficient of two sets is a measure of their intersection scaled by their size. The result is in the range from 0 to 1, where 1 is a perfect segmentation. 
+	
+	% --------------------------------------------------------------
+	\begin{figure}[h]
+		\centering
+		%omit extension of file. pdflatex will convert to pdf automatically.
+		\includegraphics[width=0.4\textwidth]{diceGraphics.png}
+		\caption{Graphical representation of the Dice Similarity Coefficien. SEG stands for the achieved segmentation whereas GT means ground truth.}
+		\label{fig:e8}
+	\end{figure}
+	% --------------------------------------------------------------
+
+	The Hausdorff distance measures how far two subsets of a metric space are from each other. So two sets are close if every point of either set is close 
+	to some point of the other set. Then the Hausdorff distance is the longest distance from one of the two sets to the other set.
+	% --------------------------------------------------------------
+	\begin{figure}[h]
+		\centering
+		%omit extension of file. pdflatex will convert to pdf automatically.
+		\includegraphics[width=0.4\textwidth]{haussdorfGraphics.png}
+		\caption{Components of the calculation of the Hausdorff distance between the green line X and the blue line Y.}
+		\label{fig:e8}
+	\end{figure}
+	% --------------------------------------------------------------
 
 \section{Results}
 \textbf{The results section should match approximately the data analysis section.}\\
