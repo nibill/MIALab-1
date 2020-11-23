@@ -53,46 +53,51 @@
 
 \title{MIALab Project HS2020}
 
-\author{\IEEEauthorblockN{1\textsuperscript{st} Thomas Buchegger}
-\IEEEauthorblockA{\textit{University of Bern} \\
-Bern, Switzerland \\
-thomas.buchegger@students.unibe.ch}
+
+\author{\IEEEauthorblockN{ Thomas Buchegger}
+\IEEEauthorblockA{\textit{University of Bern}, Bern, Switzerland, E-Mail: thomas.buchegger@students.unibe.ch}\\
 \and
-\IEEEauthorblockN{2\textsuperscript{nd} Carolina Duran}
-\IEEEauthorblockA{\textit{University of Bern} \\
-Bern, Switzerland \\
-carolina.duran@students.unibe.ch}
+\IEEEauthorblockN{Carolina Duran}
+\IEEEauthorblockA{\textit{University of Bern}, Bern, Switzerland, E-Mail: carolina.duran@students.unibe.ch}\\
 \and
-\IEEEauthorblockN{3\textsuperscript{rd} Stefan Weber}
-\IEEEauthorblockA{\textit{University of Bern} \\
-Bern, Switzerland \\
-stefan.weber@students.unibe.ch}
+\IEEEauthorblockN{Stefan Weber}
+\IEEEauthorblockA{\textit{University of Bern}, Bern, Switzerland, E-Mail: stefan.weber1@students.unibe.ch}\\
 }
 \date{03.06.2020}
 
 \maketitle
-
+\pagestyle{plain}
+\newpage
 
 
 % --------------------------------------------------------------
 % Abstract
 % --------------------------------------------------------------
 
-\newpage
-
 \begin{abstract}
-Here is the abstract
+Here is the abstract.
 
 
 \end{abstract}
 
-\newpage
+
 
 % --------------------------------------------------------------
 % Introduction
 % --------------------------------------------------------------
 
 \section{Introduction}
+
+	Postprocesses of clinical diagnosis images for treatment planning often include manual segmentation of brain regions. 
+	To segment and label the brain structures in a large dataset is complicated and time-consuming by manual operator-guided segmentation. 
+	Furthermore, it is affected by user variability and prone to limiting the standardisation. 
+	This paper will depend upon automated segmentation that segments and labels five different brain regions. \\
+
+
+	To conclude we hypothesis that normalization has an important influence in the segmentation process of brain regions. 
+	We present in this paper the acquired results applying multiple normalization methods and comparing them for every segmented brain region. 
+	Furthermore, we analyse the results and conclude our findings. \\
+
 
 \textbf{Our hypothesis: "Image normalization has an important influence on the segmentation".
 Aims of the introduction:
@@ -138,13 +143,31 @@ For the research:
 \item Establish expectations of the report
 	\begin{enumerate}
 	\item Describe scope of the presented work
-	\item Present a summary of remainder of the report
+	\item Present a summary of remainder of the report\\
 	\end{enumerate}
 \end{enumerate} 
 }
 
 
+
+% --------------------------------------------------------------
+% Methodology
+% --------------------------------------------------------------
+
 \section{Methodology}
+\subsection{Medical Backgrund}
+	The five brain regions segmented in this paper are the white and grey matter, hippocampus, amygdala and the thalamus. All regions are visible in Figure 1.
+
+	% --------------------------------------------------------------
+	\begin{figure}[h]
+		\centering
+		%omit extension of file. pdflatex will convert to pdf automatically.
+		\includegraphics[width=0.4\textwidth]{diceGraphics.png}
+		\caption{Graphical representation of the Dice Similarity Coefficien. SEG stands for the achieved segmentation whereas GT means ground truth.}
+		\label{fig:e8}
+	\end{figure}
+	% --------------------------------------------------------------
+
 \subsection{Data}
 	The data we used was provided by the Medical Image Analysis Lab team at the University of Bern. Overall, our dataset consists of 32 MRI,
 	out of which 21 we used for training and 11 for testing our model. From each patient we have a T1-weighted and a T2-weighted image. Each MRI file
@@ -198,9 +221,20 @@ For the research:
 	\end{figure}
 	% --------------------------------------------------------------
 
-\section{Results}
-\textbf{The results section should match approximately the data analysis section.}\\
 
+% --------------------------------------------------------------
+% Results
+% --------------------------------------------------------------
+
+\section{Results}
+
+\subsection{Data}
+\subsection{Model}
+\subsection{Evaluation}
+
+% --------------------------------------------------------------
+% Discussion
+% --------------------------------------------------------------
 
 \section{Discussion}
 \textbf{Aims of the Discussion part:
@@ -241,7 +275,15 @@ For the research:
 \end{enumerate} 
 }
 
-\section*{Acknowledgment}
+% --------------------------------------------------------------
+% Conclusion
+% --------------------------------------------------------------
+
+\section{Conclusion}
+
+% --------------------------------------------------------------
+% References
+% --------------------------------------------------------------
 
 \pagebreak
 \begin{thebibliography}{00}
