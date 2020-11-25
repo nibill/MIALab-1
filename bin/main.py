@@ -33,7 +33,7 @@ LOADING_KEYS = [structure.BrainImageTypes.T1w,
 np.random.seed(42)
 
 
-def main(result_dir: str, data_atlas_dir: str, data_train_dir: str, data_test_dir: str):
+def main(result_dir: str, data_atlas_dir: str, data_train_dir: str, data_test_dir: str, estimator: int, treeDepth: int):
     """Brain tissue segmentation using decision forests.
 
     The main routine executes the medical image analysis pipeline:
@@ -110,8 +110,8 @@ def main(result_dir: str, data_atlas_dir: str, data_train_dir: str, data_test_di
     
 
     forest = sk_ensemble.RandomForestClassifier(max_features=images[0].feature_matrix[0].shape[1],
-                                                n_estimators=10,
-                                                max_depth=10)
+                                                n_estimators=estimator,
+                                                max_depth=treeDepth)
 
     start_time = timeit.default_timer()
     forest.fit(data_train, labels_train)
@@ -120,6 +120,7 @@ def main(result_dir: str, data_atlas_dir: str, data_train_dir: str, data_test_di
     # create a result directory with timestamp
     t = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
     result_dir = os.path.join(result_dir, t)
+    result_dir = result_dir + '_' + str(estimator) + '_' + str(treeDepth)
     os.makedirs(result_dir, exist_ok=True)
 
     print('-' * 5, 'Testing...')
@@ -215,16 +216,19 @@ if __name__ == "__main__":
     parser.add_argument(
         '--data_train_dir',
         type=str,
-        default=os.path.normpath(os.path.join(script_dir, '../data/train/')),
+        default=os.path.normpath(os.path.join(script_dir, '../data/train1/')),
         help='Directory with training data.'
     )
 
     parser.add_argument(
         '--data_test_dir',
         type=str,
-        default=os.path.normpath(os.path.join(script_dir, '../data/test/')),
+        default=os.path.normpath(os.path.join(script_dir, '../data/test1/')),
         help='Directory with testing data.'
     )
 
     args = parser.parse_args()
-    main(args.result_dir, args.data_atlas_dir, args.data_train_dir, args.data_test_dir)
+
+    for x in range(10, 200, 10):
+        for y in range(10, 200, 10):
+            main(args.result_dir, args.data_atlas_dir, args.data_train_dir, args.data_test_dir, x, y)
