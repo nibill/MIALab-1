@@ -89,7 +89,7 @@ FUNCTION {default.is.use.url} { #1 }
 
 % #0 turns off the forced use of "et al."
 % #1 enables
-FUNCTION {default.is.forced.et.al} { #1 }
+FUNCTION {default.is.forced.et.al} { #0 }
 
 
 % The maximum number of names that can be present beyond which an "et al."
@@ -103,7 +103,7 @@ FUNCTION {default.max.num.names.before.forced.et.al} { #10 }
 
 % The number of names that will be shown with a forced "et al.".
 % Must be less than or equal to max.num.names.before.forced.et.al
-FUNCTION {default.num.names.shown.with.forced.et.al} { #2 }
+FUNCTION {default.num.names.shown.with.forced.et.al} { #1 }
 
 
 % #0 turns off the alternate interword spacing for entries with URLs.

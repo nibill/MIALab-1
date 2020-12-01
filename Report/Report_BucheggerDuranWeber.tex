@@ -26,8 +26,7 @@
     keywordstyle    = \color{blue},
     keywordstyle    = [2] \color{teal},
     stringstyle     = \color{green},
-    commentstyle    = \color{red}\ttfamily
-}
+    commentstyle    = \color{red}\ttfamily}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -99,6 +98,7 @@ Here is the abstract.
 
 \section{Introduction}
 
+	This is a very important citation test. \cite{Roohani2018}	
 	Postprocesses of clinical diagnosis images for treatment planning often include manual segmentation of brain regions. 
 	To segment and label the brain structures in a large dataset is complicated and time-consuming by manual operator-guided segmentation. 
 	Furthermore, it is affected by user variability and prone to limiting the standardisation. 
@@ -294,25 +294,13 @@ Here is the abstract.
 	\item Based on your findings, suggest next steps towards solving your problem
 	\end{itemize}
 }
+\pagebreak
 
 % --------------------------------------------------------------
 % References
 % --------------------------------------------------------------
 
-\pagebreak
-
-\begin{thebibliography}{1}
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-
-\end{thebibliography}
-
-%\bibliography{library} 
-%\bibliographystyle{ieeetr}
-
-
-
-
+\bibliographystyle{ieeetr}
+\bibliography{MIALab} 
 
 \end{document}
