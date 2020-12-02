@@ -216,14 +216,14 @@ if __name__ == "__main__":
     parser.add_argument(
         '--data_train_dir',
         type=str,
-        default=os.path.normpath(os.path.join(script_dir, '../data/train1/')),
+        default=os.path.normpath(os.path.join(script_dir, '../data/train/')),
         help='Directory with training data.'
     )
 
     parser.add_argument(
         '--data_test_dir',
         type=str,
-        default=os.path.normpath(os.path.join(script_dir, '../data/test1/')),
+        default=os.path.normpath(os.path.join(script_dir, '../data/test/')),
         help='Directory with testing data.'
     )
 
