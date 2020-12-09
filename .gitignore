@@ -238,7 +238,6 @@ xcuserdata/
 bin/toy-example-model/
 bin/toy-example-result/
 bin/mia-model/
-*.mha
 exercise/randomforest_plots/
 
 ##Visual Studion Code
