@@ -120,7 +120,7 @@ def main(result_dir: str, data_atlas_dir: str, data_train_dir: str, data_test_di
     # create a result directory with timestamp
     t = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
     result_dir = os.path.join(result_dir, t)
-    result_dir = result_dir + '_' + str(estimator) + '_' + str(treeDepth)
+    result_dir = result_dir + '_histMatching'
     os.makedirs(result_dir, exist_ok=True)
 
     print('-' * 5, 'Testing...')
@@ -229,6 +229,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    for x in range(10, 200, 10):
-        for y in range(10, 200, 10):
-            main(args.result_dir, args.data_atlas_dir, args.data_train_dir, args.data_test_dir, x, y)
+    # for x in range(10, 200, 10):
+    #     for y in range(10, 200, 10):
+    main(args.result_dir, args.data_atlas_dir, args.data_train_dir, args.data_test_dir, 20, 190)

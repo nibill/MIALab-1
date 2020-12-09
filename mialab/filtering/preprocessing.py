@@ -59,7 +59,7 @@ class ImageNormalization(pymia_fltr.Filter):
 
         # todo: normalize the image using numpy
         #warnings.warn('No normalization implemented. Returning unprocessed image.')
-        n_type = "nothing"
+        n_type = "histMatching"
         img_out = image
 
         #sitk.Normalize(image)
