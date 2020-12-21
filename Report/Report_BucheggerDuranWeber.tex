@@ -173,47 +173,39 @@ Here is the abstract.
 	\begin{figure}[h]
 		\centering
 		%omit extension of file. pdflatex will convert to pdf automatically.
-<<<<<<< HEAD
 		\includegraphics[width=0.5\textwidth]{T1native_all_regions_labelled.png}
 		\caption{All brain regions}
 		\label{fig:figure1}
-=======
-		\includegraphics[width=0.4\textwidth]{T1native_all_regions_labelled}
-		\caption{The five brain regions which are segmented and labelled.}
-		\label{fig:e1}
->>>>>>> f368b2b55c36fdd80c03e7e927c60bab5ef27044
 	\end{figure}
 	% --------------------------------------------------------------
 
 \subsection{Data}
-	The data we used was provided by the Medical Image Analysis Lab team at the University of Bern. Overall, our dataset consists of 32 MRI,
-	out of which 21 we used for training and 11 for testing our model. From each patient we have a T1-weighted and a T2-weighted image. Each MRI file
-	is of the size 118x118x217.
+	The data used for this project was provided by the Medical Image Analysis Lab team at the University of Bern. Overall, the dataset consisted of 32 MRI patient images,
+	out of which 21 were used for training and 11 for testing the model. From each patient a T1- and a T2-weighted image (T1w and T2w image) was available. Each MRI file
+	was of the size 118x118x217 pixels.
 \subsection{Model}
-	The model we used is a Random Forest classifier with which we combined different parameters with all used normalization techniques. Which parameters
-	lead to which result can be found in the results section. For normalization techniques, we used the following:
-	\begin{itemize}
-		\item zScore
+	The model used was a Random Forest classifier with which different parameters with all used normalization techniques were combined. Which parameters
+	lead to which results can be found in the results section.The following normalization techniques were used:
+	\subsubsection{ZScore}
 		\begin{equation}
 			z = \frac{x - \mu}{\sigma}
 		\end{equation}
-		\item minMax
+	\subsubsection{MinMax}
 		\begin{equation}
 			z = \frac{x - x_{min}}{x_{max} - x_{min}}
 		\end{equation}
-		\item stikN
-		\item Whitestripe
-		\item Fuzzy-C means\\
-		With fuzzy c-means we find a mask for a specified tissue type given a T1w image and its brain mask. Create a tissue mask
-		from that T1w image's FCM tissue mask. Then we can use that tissue mask as input to the func again, where the tissue mask is
-		used to find an approximate mean of the tissue intensity in	another target contrast, and move it to some standard value.
-		\item Histogram Matching
-		\item Gaussian Mixture Model
-	\end{itemize}
+	\subsubsection{stikN}
+	\subsubsection{Whitestripe}
+	\subsubsection{Fuzzy-C means} With {\itshape Fuzzy C-means} a mask for a specified tissue type given a T1w image and its brain mask is created. 
+	Then this tissue mask is used as input to the function. 
+	The tissue mask is then used to find an approximate mean of the tissue intensity in another target contrast and moves it to some standard value.
+	\subsubsection{Histogram Matching}
+	\subsubsection{Gaussian Mixture Model}
+
 \subsection{Evaluation}
-	For this paper, we evaluated our used normalization techniques on our inhouse T1-weighted and T2-weighted MRI data sets. 
-	We chose the Dice Similarity Coefficient (DCS) as well as the Hausdorff distance to evaluate the different normalization techniques.
-	Dice Similarity Coefficient returns as a quality metric how much two regions overlap and is, therefore, a useful metric for segmentation.
+	For this project, the used normalization techniques were evaluated on the T1- and T2-weighted MRI data sets. 
+	For this evaluation the Dice Similarity Coefficient (DSC) as well as the Hausdorff distance was chosen.
+	DSC returns as a quality metric how much two regions overlap and is, therefore, a useful metric for segmentation.
 	The dice coefficient of two sets, as explained in figure \ref{fig:e2}, is a measure of their intersection scaled by their size. The result is in the range from 0 to 1, where 1 is a perfect segmentation. 
 	
 	% --------------------------------------------------------------
@@ -222,11 +214,7 @@ Here is the abstract.
 		%omit extension of file. pdflatex will convert to pdf automatically.
 		\includegraphics[width=0.4\textwidth]{diceGraphics}
 		\caption{Graphical representation of the Dice Similarity Coefficien. SEG stands for the achieved segmentation whereas GT means ground truth.}
-<<<<<<< HEAD
-		\label{fig:figure2}
-=======
 		\label{fig:e2}
->>>>>>> f368b2b55c36fdd80c03e7e927c60bab5ef27044
 	\end{figure}
 	% --------------------------------------------------------------
 
