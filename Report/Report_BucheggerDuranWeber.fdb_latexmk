@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex Report_BucheggerDuranWeber"] 1608907687 "Report_BucheggerDuranWeber.aux" "Report_BucheggerDuranWeber.bbl" "Report_BucheggerDuranWeber" 1608907855
+["bibtex Report_BucheggerDuranWeber"] 1608985947 "Report_BucheggerDuranWeber.aux" "Report_BucheggerDuranWeber.bbl" "Report_BucheggerDuranWeber" 1608987842
   "C:/Users/Stefan Weber/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
   "MIALab.bib" 1608890431 6258 a203dfbd70b5a76bc1487a856323c0bd ""
-  "Report_BucheggerDuranWeber.aux" 1608907855 3495 5255578966b13d3fe02d83950f120fc4 "pdflatex"
+  "Report_BucheggerDuranWeber.aux" 1608985949 3518 950af8ff45a5c5a0dd14969fe2dabbad "pdflatex"
   (generated)
-  "Report_BucheggerDuranWeber.blg"
   "Report_BucheggerDuranWeber.bbl"
-["pdflatex"] 1608907854 "c:/Users/Stefan Weber/MIALab-1/Report/Report_BucheggerDuranWeber.tex" "c:/Users/Stefan Weber/MIALab-1/Report/Report_BucheggerDuranWeber.pdf" "Report_BucheggerDuranWeber" 1608907855
+  "Report_BucheggerDuranWeber.blg"
+["pdflatex"] 1608985947 "c:/Users/Stefan Weber/MIALab-1/Report/Report_BucheggerDuranWeber.tex" "c:/Users/Stefan Weber/MIALab-1/Report/Report_BucheggerDuranWeber.pdf" "Report_BucheggerDuranWeber" 1608987842
   "C:/Users/Stefan Weber/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1601363838 10023441 ef0f36cddedf51e64e6bd14195865f0c ""
   "C:/Users/Stefan Weber/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1606054741 82705 9cc9f144eacd499bc23a611703921467 ""
   "C:/Users/Stefan Weber/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -77,17 +77,17 @@
   "C:/Users/Stefan Weber/AppData/Local/Programs/MiKTeX/tex/latex/subfig/subfig.sty" 1121277410 22049 9ef165ca6df8815c92e693146a376c92 ""
   "C:/Users/Stefan Weber/AppData/Local/Programs/MiKTeX/tex/latex/wrapfig/wrapfig.sty" 1044403200 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "C:/Users/Stefan Weber/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1463131981 57049 34128738f682d033422ca125f82e5d62 ""
-  "Report_BucheggerDuranWeber.aux" 1608907855 3495 5255578966b13d3fe02d83950f120fc4 "pdflatex"
-  "Report_BucheggerDuranWeber.bbl" 1608907687 350 06ce30f3a890a9f73c58a29feffc417d "bibtex Report_BucheggerDuranWeber"
-  "Report_BucheggerDuranWeber.tex" 1608907853 16031 db00927db6cbc1e282c9afcd65281009 ""
-  "c:/Users/Stefan Weber/MIALab-1/Report/Report_BucheggerDuranWeber.aux" 1608907855 3495 5255578966b13d3fe02d83950f120fc4 ""
-  "c:/Users/Stefan Weber/MIALab-1/Report/Report_BucheggerDuranWeber.tex" 1608907853 16031 db00927db6cbc1e282c9afcd65281009 ""
+  "Report_BucheggerDuranWeber.aux" 1608985949 3518 950af8ff45a5c5a0dd14969fe2dabbad "pdflatex"
+  "Report_BucheggerDuranWeber.bbl" 1608985947 350 06ce30f3a890a9f73c58a29feffc417d "bibtex Report_BucheggerDuranWeber"
+  "Report_BucheggerDuranWeber.tex" 1608985985 16984 87964af6e42a2dafe02524f53b25dae4 ""
+  "c:/Users/Stefan Weber/MIALab-1/Report/Report_BucheggerDuranWeber.aux" 1608985949 3518 950af8ff45a5c5a0dd14969fe2dabbad ""
+  "c:/Users/Stefan Weber/MIALab-1/Report/Report_BucheggerDuranWeber.tex" 1608985985 16984 87964af6e42a2dafe02524f53b25dae4 ""
   "figures/T1native_all_regions_labelled.png" 1608888752 86826 7add56b5459e9849052037db967069e6 ""
   "figures/diceGraphics.png" 1608888752 162693 e84aad563282d20caa35588e2a7b9cbe ""
   "figures/haussdorfGraphics.png" 1608888752 39832 c1775b916ecffce7074a64bd1608692c ""
   (generated)
+  "c:/Users/Stefan Weber/MIALab-1/Report/Report_BucheggerDuranWeber.pdf"
+  "Report_BucheggerDuranWeber.log"
+  "Report_BucheggerDuranWeber.pdf"
   "c:/Users/Stefan Weber/MIALab-1/Report/Report_BucheggerDuranWeber.log"
   "Report_BucheggerDuranWeber.aux"
-  "Report_BucheggerDuranWeber.pdf"
-  "Report_BucheggerDuranWeber.log"
-  "c:/Users/Stefan Weber/MIALab-1/Report/Report_BucheggerDuranWeber.pdf"

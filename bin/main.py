@@ -76,38 +76,6 @@ def main(result_dir: str, data_atlas_dir: str, data_train_dir: str, data_test_di
 
     #warnings.warn('Random forest parameters not properly set.')
 
-    if Tune:
-        from sklearn.model_selection import GridSearchCV
-        from sklearn.metrics import classification_report
-
-        tuned_parameters = [{'max_features': [images[0].feature_matrix[0].shape[1]], 
-                            'n_estimators': range(1,30),
-                            'max_depth': range(1,30),
-                            'random_state': [42]}]
-        
-        print("# Tuning hyper-parameters for %s" % str(pre_process_params))
-        print()
-
-        forest = GridSearchCV(
-            sk_ensemble.RandomForestClassifier(), tuned_parameters
-        )
-        forest.fit(data_train, labels_train)
-
-        print("Best parameters set found on development set:")
-        print()
-        print(forest.best_params_)
-        print()
-        print("Grid scores on development set:")
-        print()
-        means = forest.cv_results_['mean_test_score']
-        stds = forest.cv_results_['std_test_score']
-        for mean, std, params in zip(means, stds, forest.cv_results_['params']):
-            print("%0.3f (+/-%0.03f) for %r"
-                % (mean, std * 2, params))
-        print()
-
-    
-    
 
     forest = sk_ensemble.RandomForestClassifier(max_features=images[0].feature_matrix[0].shape[1],
                                                 n_estimators=estimator,

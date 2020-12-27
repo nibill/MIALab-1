@@ -220,13 +220,18 @@ Here is the abstract.
 		
 		\subsubsection{Fuzzy-C Means} In this normalization a mask of the white matter is crated by using the Fuzzy C-means algorithm. 
 		The found white matter tissue mask is used to calculate the mean $\mu$ of all intensities which correspond to the white matter. Then all image intensities are scaled by $\mu$ and shifted to a constant target value $c$
-			\begin{equation}
+			\begin{equation}\label{FCM}
 				I_{New} = \frac{c \cdot I}{\mu}
 			\end{equation}
 
 		\subsubsection{Gaussian Mixture Model}
-
+		The Guassian Mixture Model normalization fits three Gaussian distributions to the skull stripped image intensities. The mean $\mu$ of Gaussian distribution which corresponds
+		to the white matter is then used in a to normalize the image with the same formula (\ref{FCM}) as already used in the Fuzzy-C means normalization. $c$ is again the target value where the mean $\mu$ is shifted to. The mean $\mu$ corresponding to the white matter in a T1w image
+		is the distribution with the highest intensities. In  a Tw2 image the white matter mean $\mu$ is the one with the lowest intensity values. 
+		
 		\subsubsection{Histogram Matching}
+		Histogram matching manipulates the histogram of the input image so that the histogram of the output image matches with of a given reference image. As reference image the skull stripped T1w and T2w images of a subject were used. 
+		This is done by mapping the cumulative distribution function of the input image to the reference image. 
 		
 		
 
