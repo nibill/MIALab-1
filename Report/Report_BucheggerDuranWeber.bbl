@@ -1,0 +1,21 @@
+\begin{thebibliography}{1}
+
+\bibitem{Dewan2019}
+M.~C. Dewan, A.~Rattani, G.~Fieggen, M.~A. Arraez, F.~Servadei, F.~A. Boop,
+  W.~D. Johnson, B.~C. Warf, and K.~B. Park, ``Global neurosurgery: the current
+  capacity and deficit in the provision of essential neurosurgical care.
+  executive summary of the global neurosurgery initiative at the program in
+  global surgery and social change,'' {\em Journal of Neurosurgery JNS},
+  vol.~130, no.~4, pp.~1055 -- 1064, 01 Apr. 2019.
+
+\bibitem{Pereira2016}
+S.~{Pereira}, A.~{Pinto}, V.~{Alves}, and C.~A. {Silva}, ``Brain tumor
+  segmentation using convolutional neural networks in mri images,'' {\em IEEE
+  Transactions on Medical Imaging}, vol.~35, no.~5, pp.~1240--1251, 2016.
+
+\bibitem{Brebisson2015}
+A.~{de Brébisson} and G.~{Montana}, ``Deep neural networks for anatomical
+  brain segmentation,'' in {\em 2015 IEEE Conference on Computer Vision and
+  Pattern Recognition Workshops (CVPRW)}, pp.~20--28, 2015.
+
+\end{thebibliography}

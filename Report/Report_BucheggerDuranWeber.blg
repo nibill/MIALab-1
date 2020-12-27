@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Report_BucheggerDuranWeber.aux
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+The style file: ieeetr.bst
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+Database file #1: MIALab.bib
+Warning--I didn't find a database entry for "normalizations"
+You've used 3 entries,
+            1876 wiz_defined-function locations,
+            502 strings with 4435 characters,
+and the built_in function-call counts, 1195 in all, are:
+= -- 113
+> -- 51
+< -- 0
++ -- 18
+- -- 15
+* -- 89
+:= -- 168
+add.period$ -- 3
+call.type$ -- 3
+change.case$ -- 3
+chr.to.int$ -- 0
+cite$ -- 3
+duplicate$ -- 59
+empty$ -- 104
+format.name$ -- 15
+if$ -- 293
+int.to.chr$ -- 0
+int.to.str$ -- 3
+missing$ -- 3
+newline$ -- 12
+num.names$ -- 3
+pop$ -- 9
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 50
+stack$ -- 0
+substring$ -- 100
+swap$ -- 31
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 9
+width$ -- 4
+write$ -- 33
+(There was 1 warning)
