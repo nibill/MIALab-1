@@ -298,7 +298,7 @@
 
 \twocolumn
 Table 1 presents an overview of the segmentation results for all brain regions with the different normalization methods. 
-In comparison to the ground-truth segmentation, all normalizations performed significanlty worse throughout all brain regions.
+In comparison to the ground-truth segmentation, all normalizations performed significantly worse throughout all brain regions.
 A perfect score for DSC would be $\mu = 1$ and $\sigma = 0$ and for Hausdorff Distance $\mu = 0$ and $\sigma = 0$.
 Comparing column per column over all normalizations, it is clear that no normalization has a significant effect on segmentation accuracy.
 For White Matter, for example, the mean for all DCs is $\pm$ 0.65 and the standard deviation is $\pm$ 0.05, so clearly not much difference.
@@ -330,6 +330,11 @@ Figure 2 confirms this visually.
 % --------------------------------------------------------------
 
 \section{Discussion}
+Within this work, we compared six different normalization techniques to answer the question whether or not image normalization improves segmentation of brain regions.
+Based on the obtained results, however, we cannot clearly say if that is true. Overall, no normalization method improved the segmentation significantly and there
+was no brain region which got better results than the others.\\
+
+One possible reason for this might be that all images were taken in the same hospital by the same machine and therefore were already normalized in some way.
 \textbf{Aims of the Discussion part:
 \begin{itemize}
 \item Highlight importance of your work (highlight novelty /impact etc

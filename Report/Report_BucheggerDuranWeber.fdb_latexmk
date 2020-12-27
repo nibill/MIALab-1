@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex Report_BucheggerDuranWeber"] 1609093760 "Report_BucheggerDuranWeber.aux" "Report_BucheggerDuranWeber.bbl" "Report_BucheggerDuranWeber" 1609094369
+["bibtex Report_BucheggerDuranWeber"] 1609095319 "Report_BucheggerDuranWeber.aux" "Report_BucheggerDuranWeber.bbl" "Report_BucheggerDuranWeber" 1609095327
   "C:/Users/bucheggert/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
   "MIALab.bib" 1609087835 7964 fe806db716823f8a2df99ceb8fbe8667 ""
-  "Report_BucheggerDuranWeber.aux" 1609094368 5960 5256ee2e4b32c7837d52c859f0f8a23e "pdflatex"
+  "Report_BucheggerDuranWeber.aux" 1609095327 5960 01ffc68dc9eac2f54dc38c56adac53b8 "pdflatex"
   (generated)
   "Report_BucheggerDuranWeber.bbl"
   "Report_BucheggerDuranWeber.blg"
-["pdflatex"] 1609094361 "c:/Users/bucheggert/OneDrive - nidoki/Documents/Study HS2020/MIA Lab/Project/MIALab-1/Report/Report_BucheggerDuranWeber.tex" "c:/Users/bucheggert/OneDrive - nidoki/Documents/Study HS2020/MIA Lab/Project/MIALab-1/Report/Report_BucheggerDuranWeber.pdf" "Report_BucheggerDuranWeber" 1609094369
+["pdflatex"] 1609095320 "c:/Users/bucheggert/OneDrive - nidoki/Documents/Study HS2020/MIA Lab/Project/MIALab-1/Report/Report_BucheggerDuranWeber.tex" "c:/Users/bucheggert/OneDrive - nidoki/Documents/Study HS2020/MIA Lab/Project/MIALab-1/Report/Report_BucheggerDuranWeber.pdf" "Report_BucheggerDuranWeber" 1609095327
   "C:/Users/bucheggert/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1602954596 10261461 a83f95a586afea7c6f52fb12d65e910f ""
   "C:/Users/bucheggert/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1609093898 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/bucheggert/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -147,18 +147,18 @@
   "C:/Users/bucheggert/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/bucheggert/AppData/Local/Programs/MiKTeX/tex/latex/wrapfig/wrapfig.sty" 1044403200 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "C:/Users/bucheggert/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1463131981 57049 34128738f682d033422ca125f82e5d62 ""
-  "Report_BucheggerDuranWeber.aux" 1609094368 5960 5256ee2e4b32c7837d52c859f0f8a23e "pdflatex"
-  "Report_BucheggerDuranWeber.bbl" 1609093760 1003 7b3ec5bb47ce79f4890434de1619070d "bibtex Report_BucheggerDuranWeber"
-  "Report_BucheggerDuranWeber.out" 1609094368 1321 2145ff700dbdc7cf647709c7902b7cb9 "pdflatex"
-  "Report_BucheggerDuranWeber.tex" 1609094358 25272 8dac5f4f25930287a351661654380692 ""
-  "c:/Users/bucheggert/OneDrive - nidoki/Documents/Study HS2020/MIA Lab/Project/MIALab-1/Report/Report_BucheggerDuranWeber.aux" 1609094368 5960 5256ee2e4b32c7837d52c859f0f8a23e ""
-  "c:/Users/bucheggert/OneDrive - nidoki/Documents/Study HS2020/MIA Lab/Project/MIALab-1/Report/Report_BucheggerDuranWeber.tex" 1609094358 25272 8dac5f4f25930287a351661654380692 ""
+  "Report_BucheggerDuranWeber.aux" 1609095327 5960 01ffc68dc9eac2f54dc38c56adac53b8 "pdflatex"
+  "Report_BucheggerDuranWeber.bbl" 1609095320 1003 7b3ec5bb47ce79f4890434de1619070d "bibtex Report_BucheggerDuranWeber"
+  "Report_BucheggerDuranWeber.out" 1609095327 1321 2145ff700dbdc7cf647709c7902b7cb9 "pdflatex"
+  "Report_BucheggerDuranWeber.tex" 1609095307 25828 4e855f5cd2c64c7077e79895e13459e1 ""
+  "c:/Users/bucheggert/OneDrive - nidoki/Documents/Study HS2020/MIA Lab/Project/MIALab-1/Report/Report_BucheggerDuranWeber.aux" 1609095327 5960 01ffc68dc9eac2f54dc38c56adac53b8 ""
+  "c:/Users/bucheggert/OneDrive - nidoki/Documents/Study HS2020/MIA Lab/Project/MIALab-1/Report/Report_BucheggerDuranWeber.tex" 1609095307 25828 4e855f5cd2c64c7077e79895e13459e1 ""
   "figures//T1native_all_regions_labelled.png" 1606133515 86826 7add56b5459e9849052037db967069e6 ""
   "figures//compNorms.png" 1609075533 275442 f2dfa66916a901e4c6ac913f26e003a3 ""
   (generated)
   "Report_BucheggerDuranWeber.aux"
+  "c:/Users/bucheggert/OneDrive - nidoki/Documents/Study HS2020/MIA Lab/Project/MIALab-1/Report/Report_BucheggerDuranWeber.pdf"
+  "c:/Users/bucheggert/OneDrive - nidoki/Documents/Study HS2020/MIA Lab/Project/MIALab-1/Report/Report_BucheggerDuranWeber.log"
   "Report_BucheggerDuranWeber.out"
   "Report_BucheggerDuranWeber.pdf"
-  "c:/Users/bucheggert/OneDrive - nidoki/Documents/Study HS2020/MIA Lab/Project/MIALab-1/Report/Report_BucheggerDuranWeber.log"
   "Report_BucheggerDuranWeber.log"
-  "c:/Users/bucheggert/OneDrive - nidoki/Documents/Study HS2020/MIA Lab/Project/MIALab-1/Report/Report_BucheggerDuranWeber.pdf"
