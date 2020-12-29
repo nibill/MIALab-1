@@ -1,5 +1,5 @@
 
-\documentclass[journal]{IEEEtran}
+\documentclass[article]{IEEEtran}
 % \documentclass[conference]{IEEEtran
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
@@ -15,6 +15,8 @@
 %\usepackage{subfig}
 \usepackage{booktabs,siunitx}
 \usepackage{threeparttable}
+\usepackage{multicol}
+\setlength{\columnsep}{0.3cm}
 %\usepackage{subcaption}
 \usepackage{multirow}
 \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
@@ -61,17 +63,9 @@
 
 \hyphenation{op-tical net-works semi-conduc-tor}
 
-%% For our reference part
-%\makeatletter
-%\def\bstctlcite{\@ifnextchar[{\@bstctlcite}{\@bstctlcite[@auxout]}}
-%\def\bstctlcite[#1]#2{\@bsphack\@for\@citeb:=#2\do{%
-%\edef\@citeb{\expandafter\@firstofone\@citeb}%
-%\if@filesw\immediate\write\csname #1\endcsname{\string\citation{\@citeb}}\fi}
-%\@esphack}
-%\makeatother
 
 \begin{document}
-%\bstctlcite{IEEEexample:BSTcontrol}
+
 
 % --------------------------------------------------------------
 %                         Start here
@@ -87,10 +81,8 @@
 \thanks{carolina.duran@students.unibe.ch}%
 \thanks{stefan.weber1@students.unibe.ch}}
 
-\markboth{Medical Image Analysis Lab, January~2021}%
-{}
+\markboth{Medical Image Analysis Lab, January~2021}\\
 \maketitle
-%\pagestyle{plain}
 \newpage
 
 
@@ -99,9 +91,9 @@
 % --------------------------------------------------------------
 
 \begin{abstract}
-	This paper addresses the question whether image normalization leads to better results in brain region segmentation. To answer this question,
-	we used a random forest classifier and compared six different normalization methods with each other and the ground truth segmentation. The evaluation of the segmentation performance
-	of our algorithm on T1- and T2-weighted MRI volumes shows no significant improvement compared to no normalization. 
+	This paper addresses the question whether image normalization leads to better results in anatomical brain region segmentation. 
+	To answer this question, we used a random forest classifier and compared six different normalization methods with each other and the ground truth segmentation. 
+	The evaluation of the segmentation performance of our algorithm on T1- and T2-weighted MRI volumes shows no significant improvement compared to no normalization. 
 \end{abstract}
 \hfill January 03, 2021
 
@@ -112,6 +104,8 @@
 \section{Introduction}
 
 	Every year, an estimated 13.8 million patients worldwide require a neurological surgery. The majority of neurosurgical care include traumatic brain injuries, tumors, stroke-related conditions and epilepsy. \cite{Dewan2019}
+	
+	
 	To promote and facilitate this treatments, well-designed treatment planning is required.
 	To assess the best treatment imaging Magnetic Resonance Imaging (MRI) is widely used. 
 	Post-processes of clinical diagnosis images for treatment planning often include manual segmentation of brain regions. 
@@ -127,7 +121,7 @@
 	In this paper, we propose a randomized forest for automatic segmentation that segments and labels the five different anatomical brain regions; the thalamus, the white and grey matter, the amygdala and the hippocampus. We will explore if the normalization step in the automatic segmentation will have a significant influence. 
 	
 	
-	To combine these aspects, we hypothesis that normalization has no important influence in the segmentation and labelling process of the five brain regions mentioned above. 
+	To combine these aspects, we hypothesis that normalization has no important influence in the segmentation and labelling process of the five anatomical brain regions mentioned above. 
 	We present in this paper the acquired results of no normalization and applying six normalization methods. 
 	We then compare the results for every segmented brain region and for the brain regions together. 
 	Furthermore, we analyse the results and conclude our findings. 
@@ -140,19 +134,19 @@
 \section{Materials and Methods}
 
 \subsection{Medical Image Analysis pipeline}
-	The Medical Image Analysis (MIA) pipeline taught in the MIA Lab lectures follow the sequence of firstly perform {\itshape Registration} to T1- and T2-weighted images (T1w and T2w image), then {\itshape Pre-Process}-methods. Additionally {\itshape Feature Extraction} followed by the {\itshape Classification} of the images are performed. 
-	At the end {\itshape Post-Processing}-methods are performed. Eventually, the segmentation of one patient's data set is achieved. 
+	The Medical Image Analysis (MIA) pipeline taught in the MIA Laboratory lectures follow the sequence of firstly perform {\itshape Registration} to T1- and T2-weighted images (T1w and T2w images), then {\itshape Pre-Process}-methods. Additionally {\itshape Feature Extraction} followed by the {\itshape Classification} of the images are performed. 
+	At the end {\itshape Post-Processing}-methods are applied. Eventually, the segmentation of one patient's data set is achieved. 
 
 \subsection{Medical Background}
-	The five brain regions segmented in this paper are the thalamus, white and grey matter, amygdala and the hippocampus. All regions are visible in figure \ref{fig:e1}.
+	The five anatomical brain regions segmented in this paper are the thalamus, white and grey matter, amygdala and the hippocampus. All regions are visible in figure \ref{fig:e1}.
 
 	% --------------------------------------------------------------
 	\begin{figure}[h]
 		\centering
 		%omit extension of file. pdflatex will convert to pdf automatically.
-		\includegraphics[width=0.5\textwidth]{T1native_all_regions_labelled.png}
-		\caption{Ground truth picture of the five anatomibal brain regions to be segmented and labelled in this project.}
-		\label{Figure:e1}
+		\includegraphics[width=0.57\textwidth]{brainRegions}
+		\caption{Ground truth picture of the five anatomical brain regions to be segmented and labelled in this project.}
+		\label{fig:e1}
 	\end{figure}
 	% --------------------------------------------------------------
 
@@ -161,10 +155,10 @@
 	Overall, the dataset consisted of 30 MRI patient images of unrelated healthy subjects, out of which 20 were used for training and 10 for testing the model. 
 	From each patient the ground truth image, the brain mask, a T1w and a T2w image were available. The images were generated by a 3 Tesla MRI. 
 	The ground truth has been labelled by the silver standard and with the software FreeSurfer.
-	The atlas used are the MNI152 standard-space T1-weighted average structural template images available from the {\itshape McConnell Brain Imaging Centre}\footnote{URL: \url{http://www.bic.mni.mcgill.ca/ServicesAtlases/HomePage}, Date: 23.12.2020.} (BIC) and the {\itshape NeuroImaging \& Surgical Technologies Lab}\footnote{URL: \url{http://nist.mni.mcgill.ca/?page_id=714}, Date: 23.12.2020. \label{second}}. 
+	The atlas used are the MNI152 standard-space T1-weighted average structural template images, available from the {\itshape McConnell Brain Imaging Centre}\footnote{URL: \url{http://www.bic.mni.mcgill.ca/ServicesAtlases/HomePage}, Date: 23.12.2020.} (BIC) and the {\itshape NeuroImaging \& Surgical Technologies Lab}\footnote{URL: \url{http://nist.mni.mcgill.ca/?page_id=714}, Date: 23.12.2020. \label{second}}. 
 	It corresponds to the MNI-ICBM atlas\footref{second} and is derived from 152 structural images, averaged together after high-dimensional nonlineal registration into this MNI152 coordinate system.
 	Each MRI file is of the size 118x118x217 pixels.\smallskip
-	The code was implemented in Python using scikit-learn \footnote{URL: \url{https://scikit-learn.org/stable/}, Date: 26.12.2020} and ITK\footnote{URL: \url{https://itk.org/}, Date: 26.12.2020}.
+	The code was implemented in Python using scikit-learn\footnote{URL: \url{https://scikit-learn.org/stable/}, Date: 26.12.2020} and ITK\footnote{URL: \url{https://itk.org/}, Date: 26.12.2020}.
 		
 \subsection{Registration}
 	During {\itshape Registration} the T1w and T2w image (floating image) is transformed with an affine transformation, such that it is similar to a given reference image.
@@ -173,45 +167,45 @@
 	
 \subsection{Preprocessing}
 	The aim of {\itshape Pre-Processing} is to improve the image quality for the subsequent classification. It includes among others bias field correction, skull stripping, intensity normalization and/or histogram matching.
-	Owing to the fact that the analysation and application of the impact of normalization to the realized segmentation, the used normalization techniques are described in this section.
-	For this project the brain mask for skull stripping was provided. Skull stripping was performed before six different normalizations were applied to the image data. The results among all normalizations were compared to no-normalization. Primarily the used normalization methods are described. \cite{normalizations} \smallskip
+	Owing to the aim of this project is to analyse the impact of normalization to the realized segmentation, the used normalization methods are described in this section.
+	For this project the brain mask for skull stripping was provided. Skull stripping was performed before a normalization method was applied to the image data. The results among all normalizations were compared to no-normalization. Primarily the used normalization methods are described.\cite{reinhold2018} \smallskip
 		
 	\subsubsection{ZScore}
-	While the ZScore normalization the mean intensity value (mean) as well as the intensity standard deviation (istd) of all pixel values of the input image are calculated. 
-	The image is normalized by subtracting the mean from each pixel value and then dividing this by the istd.
+	While the ZScore normalization method, the mean intensity value ($\mu$) as well as the intensity standard deviation ($\sigma$) of all pixel values of the input image are calculated. 
+	The image is normalized by subtracting $\mu$ from each pixel value and then dividing this by $\sigma$.
 	This transforms the image data into an intensity distribution with a mean of 0 and a standard deviation of 1.
 		\begin{equation}\label{ZScore}
 			I_{New} = \frac{I - \mu}{\sigma}
 		\end{equation}
 			
 	\subsubsection{MinMax}
-	When applying the MinMax normalization method, the difference between the maximal and minimal intensity value (diff) of the input image is calculated. 
-	Then the minimal intensity value of the image is subtracted from each pixel value. The result is then divided by the diff.
+	When applying the MinMax normalization method, minimal intensity value of the image is subtracted from each pixel value.
+	The result is then divided by the the difference between the maximal and minimal intensity value of the input image.
 	This scales the intensities in a range from 0 to 1. 
 		\begin{equation}
 			I_{New} = \frac{I - I_{min}}{I_{max} - I_{min}}
 		\end{equation}
 		
 	\subsubsection{Whitestripe}
-	For the Whitestripe method equation \ref{ZScore} is likewise used. In contrast to the Z-Score normalization, $\mu$ and $\sigma$ are obtained from the intensity values of the normal appearing white matter (NAWM). 
-	Thus, $\mu$ is obtained by smoothing the histogram and selecting the highest intensity peak. A 10\% segment around $\mu$ corresponds to the NAWM values of the T1w image. This segment is called the whitestripe.
+	For the Whitestripe method, equation \ref{ZScore} is likewise used. In contrast to the Z-Score normalization, $\mu$ and $\sigma$ are obtained from the intensity values of the normal appearing white matter (NAWM). 
+	More specifically, $\mu$ is obtained by smoothing the histogram and selecting the highest intensity peak. A 10\% segment around $\mu$ corresponds to the NAWM values of the T1w image. This segment is called the whitestripe.
 	The standard deviation is then calculated from this whitestripe values.
 	By applying the equation \ref{ZScore} with the obtained $\mu$ and $\sigma$ the peak of the white matter is shifted to 0 and the intensities are scaled with $\sigma$.
 	\smallskip
 		
 	\subsubsection{Fuzzy C-Means}
 	By using the Fuzzy C-Means algorithm, a mask of the white matter pixel values is created. 
-	The obtained tissue mask is used to calculate the mean of all pixel intensity values of the white matter. This mean is called $\mu$.
+	The obtained tissue mask is used to calculate the mean $\mu$ of all pixel intensity values of the white matter.
 	Following all image intensities are scaled by $\mu$ and shifted to a constant target value $c$.
-		\begin{equation}
+		\begin{equation}\label{FCM}
 			I_{New} = \frac{c \cdot I}{\mu}
 		\end{equation}
 	
 	\subsubsection{Gaussian Mixture Model}
-	The Guassian Mixture Model normalization fits three Gaussian distributions to the skull stripped image intensity values. 
+	The Guassian Mixture Model normalization method fits three Gaussian distributions to the skull stripped image intensity values. 
 	The mean $\mu$ of the Gaussian distribution of the white matter is then used to normalize the image with the same equation \ref{FCM} as in the Fuzzy C-Means normalization method. 
 	$c$ is again the target value where the mean $\mu$ is shifted to. 
-	The mean $\mu$ in a T1w image corresponding to the white matter is the peak with the highest intensity values. 
+	The white matter mean $\mu$ in a T1w image is the peak with the highest intensity values. 
 	In a T2w image the white matter mean $\mu$ is the peak with the lowest intensity values. 
 	\smallskip
 
@@ -250,10 +244,14 @@
 
 	The HD indicates whether the margin pixels of the obtain segmentation are close to the margin pixels of the ground truth. 
 	The result is the largest distance of all pixels from one point in the segmentation to the closest point in the ground truth.
+	A result of 0 indicates the best possible result.
 	The equation states:
-	\begin{equation}
+	\begin{eqnarray*}
+	%\begin{equation}
 			d_H (SEG, GT) = \max \left\{ \underset{x\in SEG}{\mathop{\sup }}\,\underset{y\in GT}{\mathop{\inf }}\,d(x,y),\underset{y\in GT}{\mathop{\sup }}\,\underset{x\in SEG}{\mathop{\inf }}\,d(x,y) \right\}
-	\end{equation}
+	%\end{equation}
+	\end{eqnarray*}
+	
 	Because of sensitivity of outlier pixels, only the lowest 95\% percentile of HD values are taken into account.
 
 	
@@ -265,9 +263,31 @@
 
 \section{Results}
 
-\onecolumn
+	Table \ref{tab:diceHD} presents an overview of the segmentation results for all brain regions with the different normalization methods. 
+	In comparison to the ground truth segmentation, all normalization methods performed significantly worse throughout all brain regions.
+	Comparing column per column over all normalizations, it is clear that no normalization has a significant effect on segmentation accuracy.
+	As an example we are looking at the white matter region. 
+	Here the mean for all DSC is $\pm$0.66 and the standard deviation is $\pm$0.04. 
+	Thus, there is clearly not much difference between the results of the different normalization methods.
+	However, the standard deviation among all DSC values have improved.
+	Thus, all normalizations had an apparent effect on bringing $\sigma$ close to zero.
+	Worth noting is also the difference between the two metrics. A closer look on the thalamus and white matter shows the values for DSC are both similar.
+	However, the HD for the thalamus id worse than for the white matter.\smallskip
+	
+	Overall, Table \ref{tab:diceHD} shows that no normalization method performed better than the others for all brain regions together. 
+% --------------------------------------------------------------
+	\begin{figure}[h]
+		\centering
+		%omit extension of file. pdflatex will convert to pdf automatically.
+		\includegraphics[width=0.5\textwidth]{compNorms.png}
+		\caption{Comparison between the ground truth image versus no normalization (top right) and two different normalizations. All images are from the same subject and the same brain localization.In the bottom row, the resulted segmentation applying the MinMax method on the left, and the Fuzzy C-Means method on the right, are visible. }
+		\label{fig:e2}
+	\end{figure}
+% --------------------------------------------------------------
+
 % ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
-\begin{table}[!ht]
+\onecolumn
+\begin{table}[ht]
 	\caption{The following table shows the results of all runs. In total there are seven runs, one without normalization and six with different normalization methods. The two metrics Dice Similarity Coefficient (DSC) and Hausdorff distance (HD) were obtained from the ten test subjects. The statistical values, mean $\mu$ and standard deviation $\sigma$, of DC and HD of the five segmented brain regions were determined.}
 	\label{tab:diceHD}
 	\begin{center}
@@ -275,117 +295,85 @@
 	\begin{tabular}{c c c c c c c}
 		\toprule
 			\textbf{Normalization} & \textbf{Metric} &  \textbf{Thalamus} & \textbf{White Matter} & \textbf{Grey Matter} & \textbf{Amygdala} & \textbf{Hippocampus} \\ \midrule
-		No Normalization		&	DSC	&	$\mu$: 0.64, $\sigma$: 0.04		&	$\mu$: 0.65, $\sigma$: 0.06		&	$\mu$: 0.39, $\sigma$: 0.02		&	$\mu$: 0.37, $\sigma$: 0.07		&	$\mu$: 0.24, $\sigma$: 0.02		\\ \cmidrule(lr{1em}){2-7}
-								&	HD	&	$\mu$: 24.58, $\sigma$: 15.70	&	$\mu$: 4.94, $\sigma$: 0.71		&	$\mu$: 5.41, $\sigma$: 1.46		&	$\mu$: 18.58, $\sigma$: 4.59	&	$\mu$: 22.31, $\sigma$: 3.04	\\ \midrule
-		ZScore					&	DSC	&	$\mu$: 0.64, $\sigma$: 0.02		&	$\mu$: 0.67, $\sigma$: 0.03		&	$\mu$: 0.40, $\sigma$: 0.02		&	$\mu$: 0.37, $\sigma$: 0.04		&	$\mu$: 0.26, $\sigma$: 0.01 	\\ \cmidrule(lr{1em}){2-7}
-								&	HD	&	$\mu$: 39.27, $\sigma$: 2.36	&	$\mu$: 4.24, $\sigma$: 0.35		&	$\mu$: 4.60, $\sigma$: 0.57		&	$\mu$: 15.82, $\sigma$: 0.92	&	$\mu$: 20.65, $\sigma$: 0.86 	\\ \midrule
-		MinMax 					&	DSC	&	$\mu$: 0.66, $\sigma$: 0.03		&	$\mu$: 0.65, $\sigma$: 0.03		&	$\mu$: 0.39, $\sigma$: 0.02		&	$\mu$: 0.37, $\sigma$: 0.04		&	$\mu$: 0.24, $\sigma$: 0.02 	\\ \cmidrule(lr{1em}){2-7}
-								&	HD	&	$\mu$: 21.04, $\sigma$: 1.73	&	$\mu$: 5.53, $\sigma$: 0.31		&	$\mu$: 5.04, $\sigma$: 0.92		&	$\mu$: 17.45, $\sigma$: 0.72	&	$\mu$: 20.43, $\sigma$: 1.63 	\\ \midrule
-		Whitestripe 			&	DSC	&	$\mu$: 0.60, $\sigma$: 0.17		&	$\mu$: 0.64, $\sigma$: 0.09		&	$\mu$: 0.39, $\sigma$: 0.02		&	$\mu$: 0.37, $\sigma$: 0.03		&	$\mu$: 0.25, $\sigma$: 0.01 	\\ \cmidrule(lr{1em}){2-7}
-								&	HD	&	$\mu$: 38.19, $\sigma$: 5.74	&	$\mu$: 4.39, $\sigma$: 0.30		&	$\mu$: 4.78, $\sigma$: 0.99		&	$\mu$: 20.10, $\sigma$: 5.33	&	$\mu$: 22.24, $\sigma$: 3.80 	\\ \midrule
-		Fuzzy C-Means 			&	DSC	&	$\mu$: 0.61, $\sigma$: 0.03		&	$\mu$: 0.68, $\sigma$: 0.03		&	$\mu$: 0.40, $\sigma$: 0.02		&	$\mu$: 0.39, $\sigma$: 0.03		&	$\mu$: 0.26, $\sigma$: 0.01 	\\ \cmidrule(lr{1em}){2-7}
-								&	HD	&	$\mu$: 41.41, $\sigma$: 0.64	&	$\mu$: 4.01, $\sigma$: 0.33		&	$\mu$: 4.80, $\sigma$: 0.67		&	$\mu$: 17.46, $\sigma$: 2.41	&	$\mu$: 20.35, $\sigma$: 1.15 	\\ \midrule
-		Gaussian Mixture Model 	&	DSC	&	$\mu$: 0.67, $\sigma$: 0.03		&	$\mu$: 0.68, $\sigma$: 0.02 	& 	$\mu$: 0.42, $\sigma$: 0.02		& 	$\mu$: 0.41, $\sigma$: 0.03 	& 	$\mu$: 0.39, $\sigma$: 0.01 	\\ \cmidrule(lr{1em}){2-7}
-								&	HD	& 	$\mu$: 38.06, $\sigma$: 1.14 	& 	$\mu$: 4.08, $\sigma$: 0.17 	& 	$\mu$: 3.38, $\sigma$: 0.29 	& 	$\mu$: 17.34, $\sigma$: 3.63 	& 	$\mu$: 17.57, $\sigma$: 1.83 	\\ \midrule
-		Histogram Matching	 	&	DSC	& 	$\mu$:0.65, $\sigma$: 0.02 		& 	$\mu$: 0.61, $\sigma$: 0.04 	& 	$\mu$: 0.42, $\sigma$: 0.02 	& 	$\mu$: 0.42, $\sigma$: 0.04		& 	$\mu$: 0.28, $\sigma$: 0.02 	\\ \cmidrule(lr{1em}){2-7}
-								&	HD	& 	$\mu$: 23.26, $\sigma$: 1.29	&  	$\mu$: 5.91, $\sigma$: 0.38 	& 	$\mu$: 3.06, $\sigma$: 0.17 	& 	$\mu$: 17.25, $\sigma$: 2.27	& 	$\mu$: 28.37, $\sigma$: 2.20 	\\  \bottomrule
+		No Normalization			&	DSC		&	$\mu$: 0.64, $\sigma$: 0.04		&	$\mu$: 0.65, $\sigma$: 0.06		&	$\mu$: 0.39, $\sigma$: 0.02		&	$\mu$: 0.37, $\sigma$: 0.07		&	$\mu$: 0.24, $\sigma$: 0.02		\\ \cmidrule(lr{1em}){2-7}
+								&	HD		&	$\mu$: 24.58, $\sigma$: 15.70	&	$\mu$: 4.94, $\sigma$: 0.71		&	$\mu$: 5.41, $\sigma$: 1.46		&	$\mu$: 18.58, $\sigma$: 4.59		&	$\mu$: 22.31, $\sigma$: 3.04	\\ \midrule
+		ZScore					&	DSC		&	$\mu$: 0.64, $\sigma$: 0.02		&	$\mu$: 0.67, $\sigma$: 0.03		&	$\mu$: 0.40, $\sigma$: 0.02		&	$\mu$: 0.37, $\sigma$: 0.04		&	$\mu$: 0.26, $\sigma$: 0.01 	\\ \cmidrule(lr{1em}){2-7}
+								&	HD		&	$\mu$: 39.27, $\sigma$: 2.36		&	$\mu$: 4.24, $\sigma$: 0.35		&	$\mu$: 4.60, $\sigma$: 0.57		&	$\mu$: 15.82, $\sigma$: 0.92		&	$\mu$: 20.65, $\sigma$: 0.86 	\\ \midrule
+		MinMax 					&	DSC		&	$\mu$: 0.66, $\sigma$: 0.03		&	$\mu$: 0.65, $\sigma$: 0.03		&	$\mu$: 0.39, $\sigma$: 0.02		&	$\mu$: 0.37, $\sigma$: 0.04		&	$\mu$: 0.24, $\sigma$: 0.02 	\\ \cmidrule(lr{1em}){2-7}
+								&	HD		&	$\mu$: 21.04, $\sigma$: 1.73		&	$\mu$: 5.53, $\sigma$: 0.31		&	$\mu$: 5.04, $\sigma$: 0.92		&	$\mu$: 17.45, $\sigma$: 0.72		&	$\mu$: 20.43, $\sigma$: 1.63 	\\ \midrule
+		Whitestripe 				&	DSC		&	$\mu$: 0.60, $\sigma$: 0.17		&	$\mu$: 0.64, $\sigma$: 0.09		&	$\mu$: 0.39, $\sigma$: 0.02		&	$\mu$: 0.37, $\sigma$: 0.03		&	$\mu$: 0.25, $\sigma$: 0.01 	\\ \cmidrule(lr{1em}){2-7}
+								&	HD		&	$\mu$: 38.19, $\sigma$: 5.74		&	$\mu$: 4.39, $\sigma$: 0.30		&	$\mu$: 4.78, $\sigma$: 0.99		&	$\mu$: 20.10, $\sigma$: 5.33		&	$\mu$: 22.24, $\sigma$: 3.80 	\\ \midrule
+		Fuzzy C-Means 			&	DSC		&	$\mu$: 0.61, $\sigma$: 0.03		&	$\mu$: 0.68, $\sigma$: 0.03		&	$\mu$: 0.40, $\sigma$: 0.02		&	$\mu$: 0.39, $\sigma$: 0.03		&	$\mu$: 0.26, $\sigma$: 0.01 	\\ \cmidrule(lr{1em}){2-7}
+								&	HD		&	$\mu$: 41.41, $\sigma$: 0.64		&	$\mu$: 4.01, $\sigma$: 0.33		&	$\mu$: 4.80, $\sigma$: 0.67		&	$\mu$: 17.46, $\sigma$: 2.41		&	$\mu$: 20.35, $\sigma$: 1.15 	\\ \midrule
+		Gaussian Mixture Model	&	DSC		&	$\mu$: 0.67, $\sigma$: 0.03		&	$\mu$: 0.68, $\sigma$: 0.02 		& 	$\mu$: 0.42, $\sigma$: 0.02		& 	$\mu$: 0.41, $\sigma$: 0.03 		& 	$\mu$: 0.39, $\sigma$: 0.01 	\\ \cmidrule(lr{1em}){2-7}
+								&	HD		& 	$\mu$: 38.06, $\sigma$: 1.14 		& 	$\mu$: 4.08, $\sigma$: 0.17 		& 	$\mu$: 3.38, $\sigma$: 0.29 		& 	$\mu$: 17.34, $\sigma$: 3.63 		& 	$\mu$: 17.57, $\sigma$: 1.83 	\\ \midrule
+		Histogram Matching	 	&	DSC		& 	$\mu$:0.65, $\sigma$: 0.02 		& 	$\mu$: 0.61, $\sigma$: 0.04 		& 	$\mu$: 0.42, $\sigma$: 0.02 		& 	$\mu$: 0.42, $\sigma$: 0.04		& 	$\mu$: 0.28, $\sigma$: 0.02 	\\ \cmidrule(lr{1em}){2-7}
+								&	HD		& 	$\mu$: 23.26, $\sigma$: 1.29		&  	$\mu$: 5.91, $\sigma$: 0.38 		& 	$\mu$: 3.06, $\sigma$: 0.17 		& 	$\mu$: 17.25, $\sigma$: 2.27		& 	$\mu$: 28.37, $\sigma$: 2.20 	\\  \bottomrule
 	\end{tabular}
 	\end{threeparttable}
 	\end{center}
-	\label{table:simDisimCoefNewDef}
 \end{table}
-	% ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-\twocolumn
-Table 1 presents an overview of the segmentation results for all brain regions with the different normalization methods. 
-In comparison to the ground-truth segmentation, all normalizations performed significantly worse throughout all brain regions.
-A perfect score for DSC would be $\mu = 1$ and $\sigma = 0$ and for Hausdorff Distance $\mu = 0$ and $\sigma = 0$.
-Comparing column per column over all normalizations, it is clear that no normalization has a significant effect on segmentation accuracy.
-For White Matter, for example, the mean for all DCs is $\pm$ 0.65 and the standard deviation is $\pm$ 0.05, so clearly not much difference.
-What improved, however, is the standard deviation among all dice coefficient values. So all normalizations had an apparent effect on bringing $\sigma$ really close to zero.
-Also worth noting is the difference between the two metrics. A closer look on thalamus and white matter shows the values for DSC are both close,
-the Hausdorff Distance, however, is for thalamus much worse than for white matter.\\
 
-Overall, Table 1 clearly shows that no normalization method performed better than the others and it also does not matter which brain region is segmented
-as the results are all similar.
+% ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{multicols}{2}
 
-	% --------------------------------------------------------------
-	\begin{figure}[h]
-		\centering
-		%omit extension of file. pdflatex will convert to pdf automatically.
-		\includegraphics[width=0.5\textwidth]{compNorms.png}
-		\caption{Comparison of no ground truth vs. different normalizations}
-		\label{Figure:e1}
-	\end{figure}
-	% --------------------------------------------------------------
+	A selection of resulted segmentations and the ground truth segmentation of one specific subject is depicted in Figure \ref{fig:e2}.
+	All images are taken from the same brain localization.
+	The top left image shows the ground truth segmentation. 
+	The shape and size of the brain from the ground truth differ from the resulted images, because it has not been registered to the same atlas as the others.
+	The more similar the resulted segmentation is to the ground truth, the better.
+	The top right image is the segmentation with no normalization.
+	The bottom row shows the resulted segmentation applying the MinMax method on the left, and the Fuzzy C-Means method on the right. 
+	The segmented hippocampus is more dominant in the resulted segmentation, than in the ground truth.
+	Both segmentations look different compared to the ground truth, but look similar to the resulted normalization applying no normalization. 
+	This explains the high HDe value in Table \ref{tab:diceHD}. 
+	Figure \ref{fig:e2} confirms visually that there is no normalization better than the other.
+	
 
-A selection of results is depicted in Figure 2. Top left shows the ground-truth segmentation, so as similar our normalization look, the better.
-Top right is the segmentation with no normalization and it is obvious that the result is much worse. The bottom row with MinMax ans Fuzzy C-Means
-normalization look completely different than the ground truth as well, yet similar to no normalization. One obvious difference is the lack of thalamus, which explains
-the very high hausdorff distance value in Table 1. As already mentioned that Table 1 shows that there is no normalization better than the other, 
-Figure 2 confirms this visually.
 
 % --------------------------------------------------------------
 % Discussion
 % --------------------------------------------------------------
 
-\section{Discussion}
-Within this work, we compared six different normalization techniques to answer the question whether or not image normalization improves segmentation of brain regions.
-Based on the obtained results, however, we cannot clearly say if that is true. Overall, no normalization method improved the segmentation significantly and there
-was no brain region which got better results than the others.\\
 
-One possible reason for this might be that all images were taken in the same hospital by the same machine and therefore were already normalized in some way.
-\textbf{Aims of the Discussion part:
-\begin{itemize}
-\item Highlight importance of your work (highlight novelty /impact etc
-\item To interpret your results in relation to your original problem
-\item To put your work into the context of existing work
-\item To present any limitations of the presented work
-\item To make future recommendations
-\item To provide a conclusion of the work
-\end{itemize}
-\begin{enumerate}
-\item Importance of the work
-	\begin{enumerate}
-	\item Summarise your results
-	\item Reiterate the importance of the work (novelty , impact etc)
-	\end{enumerate}
-\item Interpretation of results
-	\begin{enumerate}
-	\item Interpret your results focussing on the problem described in the introduction. What do the results mean for the described problem?
-	\item Explain any unusual/important findings (be careful if not your original investigative subject)
-	\end{enumerate}
-\item Provide context
-	\begin{enumerate}
-	\item Describe your results in relation to others and try to explain any discrepancies
-	\item Emphasize how your results support or refute your hypotheses current thinking in the field. Were results as expected? If not why and what does this mean?
-	\end{enumerate}
-\item Limitations of your work
-	\begin{enumerate}
-	\item Describe any limitations /deficiencies of your work and what impact they have on the findings
-	\item Suggest possible future solutions
-	\end{enumerate}
-\end{enumerate} 
-}
+\section{Discussion}
+	Within this project we compared six different normalization methods to answer the question whether or not image normalization has an important influence in the segmentation and labelling process of brain regions.
+	To facilitate brain region segmentation for treatment planning and reducing complexity and time, automatic brain region segmentation is of high importance. \\
+	
+	Based on the obtained result, the normalization has no important influence in the segmentation and labelling process of brain regions. 
+	Nevertheless, the variance can be reduced. \\
+	
+	Overall, no normalization method improved the segmentation significantly.
+	We assume the data sets are already similar because they were obtain with the same MRI machine at the same hospital. 
+	Additionally, bias field correction has been applied to all images. 
+	Another issue is that the ground truth segmentation seems not to be the best reference. 
+	In figure \ref{fig:e1} it is visible that the ground truth has numerous black spots where there should be a segmentation. Also the segmentation looks irregular.\\
+	
+	For different brain regions, different normalization methods gave slightly better results than the ground truth. 
+	But still no normalization method gave better results for all the brain regions together.\\	
+	
+	If specific brain regions were segmented with the respective normalisations that had a positive effect on them, better overall results would be obtained. 
+	Even with this approach, the segmentation results would not be significantly improved because the individual improvements are too small.
+
 
 % --------------------------------------------------------------
 % Conclusion
 % --------------------------------------------------------------
 
 \section{Conclusion}
-\textbf{	
-	\begin{itemize}
-	\item Summarise your findings and relate your findings back to your hypothesis / aim / objective and to your problem.
-	\item Based on your findings, suggest next steps towards solving your problem
-	\end{itemize}
-}
-\pagebreak
-
+	We were able to justify our hypothesis and stating that normalization has no important influence in the segmentation and labelling process of this five anatomical brain regions. \\
+	For further steps data sets should be obtain of different MRI machines from different hospitals and with different magnetic flux density.
+	Additionally, the images may be in a raw condition, without any pre process.
+	As a further improvement a more evolved and innovated machine learning approach could be applied, as for example a deep neuronal network.
+	
 % --------------------------------------------------------------
 % References
 % --------------------------------------------------------------
 
 \bibliographystyle{ieeetr}
 \bibliography{MIALab} 
+
+\end{multicols}
 
 \end{document}
