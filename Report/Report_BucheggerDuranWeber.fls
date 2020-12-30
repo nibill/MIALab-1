@@ -596,6 +596,15 @@ INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\threeparttable
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\threeparttable\threeparttable.sty
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\threeparttable\threeparttable.sty
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\threeparttable\threeparttable.sty
+INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\tools\multicol.sty
+INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\tools\multicol.sty
+INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\tools\multicol.sty
+INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\tools\multicol.sty
+INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\tools\multicol.sty
+INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\tools\multicol.sty
+INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\tools\multicol.sty
+INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\tools\multicol.sty
+INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\tools\multicol.sty
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
@@ -772,13 +781,12 @@ INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt8.tfm
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt8.tfm
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmrc7t.tfm
-INPUT .\figures\\T1native_all_regions_labelled.png
-INPUT .\figures\\T1native_all_regions_labelled.png
-INPUT figures\\T1native_all_regions_labelled.png
-INPUT .\figures\\T1native_all_regions_labelled.png
-INPUT .\figures\\T1native_all_regions_labelled.png
-INPUT .\figures\\T1native_all_regions_labelled.png
-INPUT .\figures\\T1native_all_regions_labelled.png
+INPUT .\figures\\brainRegions.png
+INPUT figures\\brainRegions.png
+INPUT .\figures\\brainRegions.png
+INPUT .\figures\\brainRegions.png
+INPUT .\figures\\brainRegions.png
+INPUT .\figures\\brainRegions.png
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi8.tfm
@@ -816,12 +824,17 @@ INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\pt
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmr7t.vf
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmri7t.vf
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmri8r.tfm
-INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmb7t.vf
-INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmb8r.tfm
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmr7t.vf
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmr8r.tfm
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmr7t.vf
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmr8r.tfm
+INPUT .\figures\\compNorms.png
+INPUT .\figures\\compNorms.png
+INPUT figures\\compNorms.png
+INPUT .\figures\\compNorms.png
+INPUT .\figures\\compNorms.png
+INPUT .\figures\\compNorms.png
+INPUT .\figures\\compNorms.png
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr9.tfm
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi9.tfm
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy9.tfm
@@ -832,13 +845,6 @@ INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfont
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmb7t.vf
 INPUT C:\Users\bucheggert\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmb8r.tfm
-INPUT .\figures\\compNorms.png
-INPUT .\figures\\compNorms.png
-INPUT figures\\compNorms.png
-INPUT .\figures\\compNorms.png
-INPUT .\figures\\compNorms.png
-INPUT .\figures\\compNorms.png
-INPUT .\figures\\compNorms.png
 INPUT c:\Users\bucheggert\OneDrive - nidoki\Documents\Study HS2020\MIA Lab\Project\MIALab-1\Report\Report_BucheggerDuranWeber.bbl
 INPUT c:\Users\bucheggert\OneDrive - nidoki\Documents\Study HS2020\MIA Lab\Project\MIALab-1\Report\Report_BucheggerDuranWeber.bbl
 INPUT c:\Users\bucheggert\OneDrive - nidoki\Documents\Study HS2020\MIA Lab\Project\MIALab-1\Report\Report_BucheggerDuranWeber.bbl

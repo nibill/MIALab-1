@@ -103,26 +103,26 @@
 
 \section{Introduction}
 
-	Every year, an estimated 13.8 million patients worldwide require a neurological surgery. The majority of neurosurgical care include traumatic brain injuries, tumors, stroke-related conditions and epilepsy. \cite{Dewan2019}
+	Every year, an estimated 13.8 million patients worldwide require a neurological surgery. The majority of neurosurgical care includes traumatic brain injuries, tumors, stroke-related conditions and epilepsy. \cite{Dewan2019}
 	
 	
-	To promote and facilitate this treatments, well-designed treatment planning is required.
-	To assess the best treatment imaging Magnetic Resonance Imaging (MRI) is widely used. 
-	Post-processes of clinical diagnosis images for treatment planning often include manual segmentation of brain regions. 
-	Unfortunately, to segment and label by manual operator-guided segmentation the brain structures of the large amount of data produced by MRI is complicated and time-consuming. 
-	Furthermore, it is affected by user variability and prone to limiting the standardisation. 
+	To promote and facilitate these treatments, well-designed treatment planning is required.
+	For assessment of the best treatment, Imaging Magnetic Resonance Imaging (MRI) is widely used. 
+	Postprocesses of clinical diagnosis images for treatment planning often include manual segmentation of brain regions. 
+	Unfortunately, it is time-consuming to manually segment and label segmentation of brain structures of the large amount of data produced by MRI. 
+	Furthermore, manual segmentation is affected by user variability and prone to limiting the standardisation. 
 	Thus, an automatic and reliable segmentation approach is highly recommended, desirable and will be the next evolutional step. \cite{Pereira2016} \cite{Brebisson2015}
 
 
-	Different automatic segmentation approaches are already well used, as for example the Convolutional Neural Network \cite{Pereira2016}.
+	Different automatic segmentation approaches are already well used, for example the Convolutional Neural Network \cite{Pereira2016}.
 	Nevertheless, it is still not fully analysed if the normalization step in the automatic segmentation of anatomical brain regions influences the segmentation process.
 	
 	
-	In this paper, we propose a randomized forest for automatic segmentation that segments and labels the five different anatomical brain regions; the thalamus, the white and grey matter, the amygdala and the hippocampus. We will explore if the normalization step in the automatic segmentation will have a significant influence. 
+	In this paper, we propose a random forest for automatic segmentation that segments and labels the five different anatomical brain regions; the thalamus, the white and grey matter, the amygdala and the hippocampus. We will explore if the normalization step in the automatic segmentation will have a significant influence. 
 	
 	
-	To combine these aspects, we hypothesis that normalization has no important influence in the segmentation and labelling process of the five anatomical brain regions mentioned above. 
-	We present in this paper the acquired results of no normalization and applying six normalization methods. 
+	To combine these aspects, we hypothesize that normalization has no important influence in the segmentation and labelling process of the five anatomical brain regions mentioned above. 
+	We present in this paper the acquired results of no normalization and of applying six normalization methods. 
 	We then compare the results for every segmented brain region and for the brain regions together. 
 	Furthermore, we analyse the results and conclude our findings. 
 
@@ -134,8 +134,8 @@
 \section{Materials and Methods}
 
 \subsection{Medical Image Analysis pipeline}
-	The Medical Image Analysis (MIA) pipeline taught in the MIA Laboratory lectures follow the sequence of firstly perform {\itshape Registration} to T1- and T2-weighted images (T1w and T2w images), then {\itshape Pre-Process}-methods. Additionally {\itshape Feature Extraction} followed by the {\itshape Classification} of the images are performed. 
-	At the end {\itshape Post-Processing}-methods are applied. Eventually, the segmentation of one patient's data set is achieved. 
+	The Medical Image Analysis (MIA) pipeline taught in the MIA Laboratory lectures follows the sequence of firstly perform {\itshape Registration} to T1- and T2-weighted images (T1w and T2w images), then {\itshape Preprocess}-methods. Additionally {\itshape Feature Extraction} followed by the {\itshape Classification} of the images is performed. 
+	At the end {\itshape Postprocessing}-methods are applied. Eventually, the segmentation of one patient data set is achieved. 
 
 \subsection{Medical Background}
 	The five anatomical brain regions segmented in this paper are the thalamus, white and grey matter, amygdala and the hippocampus. All regions are visible in figure \ref{fig:e1}.
@@ -151,11 +151,11 @@
 	% --------------------------------------------------------------
 
 \subsection{Data}
-	The data used for this project was from the {\itshape Human Connectome Project} and has been provided by the Medical Image Analysis Lab team at the University of Bern. For anonymization the faces and ears of the skull have been blurred. 
-	Overall, the dataset consisted of 30 MRI patient images of unrelated healthy subjects, out of which 20 were used for training and 10 for testing the model. 
-	From each patient the ground truth image, the brain mask, a T1w and a T2w image were available. The images were generated by a 3 Tesla MRI. 
+	The data used for this project was from the {\itshape Human Connectome Project} and has been provided by the Medical Image Analysis Lab team at the University of Bern. For anonymization, the faces and ears of the skull have been blurred. 
+	Overall, the dataset consisted of 30 MRI patient images of unrelated healthy subjects out of which 20 were used for training and 10 for testing the model. 
+	From each patient we were given the ground truth image, the brain mask, a T1w and a T2w image. The images were generated by a 3 Tesla MRI. 
 	The ground truth has been labelled by the silver standard and with the software FreeSurfer.
-	The atlas used are the MNI152 standard-space T1-weighted average structural template images, available from the {\itshape McConnell Brain Imaging Centre}\footnote{URL: \url{http://www.bic.mni.mcgill.ca/ServicesAtlases/HomePage}, Date: 23.12.2020.} (BIC) and the {\itshape NeuroImaging \& Surgical Technologies Lab}\footnote{URL: \url{http://nist.mni.mcgill.ca/?page_id=714}, Date: 23.12.2020. \label{second}}. 
+	The atlases used are the MNI152 standard-space T1-weighted average structural template images, available at the {\itshape McConnell Brain Imaging Centre}\footnote{URL: \url{http://www.bic.mni.mcgill.ca/ServicesAtlases/HomePage}, Date: 23.12.2020.} (BIC) and the {\itshape NeuroImaging \& Surgical Technologies Lab}\footnote{URL: \url{http://nist.mni.mcgill.ca/?page_id=714}, Date: 23.12.2020. \label{second}}. 
 	It corresponds to the MNI-ICBM atlas\footref{second} and is derived from 152 structural images, averaged together after high-dimensional nonlineal registration into this MNI152 coordinate system.
 	Each MRI file is of the size 118x118x217 pixels.\smallskip
 	The code was implemented in Python using scikit-learn\footnote{URL: \url{https://scikit-learn.org/stable/}, Date: 26.12.2020} and ITK\footnote{URL: \url{https://itk.org/}, Date: 26.12.2020}.
@@ -166,13 +166,13 @@
 	and are not part of this work. 	
 	
 \subsection{Preprocessing}
-	The aim of {\itshape Pre-Processing} is to improve the image quality for the subsequent classification. It includes among others bias field correction, skull stripping, intensity normalization and/or histogram matching.
+	The aim of {\itshape Prerocessing} is to improve the image quality for the subsequent classification. It includes bias field correction, skull stripping, intensity normalization and/or histogram matching and more.
 	Owing to the aim of this project is to analyse the impact of normalization to the realized segmentation, the used normalization methods are described in this section.
 	For this project the brain mask for skull stripping was provided. Skull stripping was performed before a normalization method was applied to the image data. The results among all normalizations were compared to no-normalization. Primarily the used normalization methods are described.\cite{reinhold2018} \smallskip
 		
 	\subsubsection{ZScore}
 	While the ZScore normalization method, the mean intensity value ($\mu$) as well as the intensity standard deviation ($\sigma$) of all pixel values of the input image are calculated. 
-	The image is normalized by subtracting $\mu$ from each pixel value and then dividing this by $\sigma$.
+	The image is normalized by subtracting $\mu$ from each pixel value and then dividing by $\sigma$.
 	This transforms the image data into an intensity distribution with a mean of 0 and a standard deviation of 1.
 		\begin{equation}\label{ZScore}
 			I_{New} = \frac{I - \mu}{\sigma}
@@ -203,7 +203,7 @@
 	
 	\subsubsection{Gaussian Mixture Model}
 	The Guassian Mixture Model normalization method fits three Gaussian distributions to the skull stripped image intensity values. 
-	The mean $\mu$ of the Gaussian distribution of the white matter is then used to normalize the image with the same equation \ref{FCM} as in the Fuzzy C-Means normalization method. 
+	The mean $\mu$ of the Gaussian distribution of the white matter is then used to normalize the image with the same equation \ref{FCM} used in the Fuzzy C-Means normalization method. 
 	$c$ is again the target value where the mean $\mu$ is shifted to. 
 	The white matter mean $\mu$ in a T1w image is the peak with the highest intensity values. 
 	In a T2w image the white matter mean $\mu$ is the peak with the lowest intensity values. 
@@ -212,16 +212,15 @@
 	\subsubsection{Histogram Matching}
 	Histogram matching manipulates the histogram of the input image in such a way that the histogram of the output image matches the histogram of a given reference image. 
 	This is done by mapping the cumulative distribution function of the input image to the reference image.
-	As a reference image the skull stripped T1w and T2w images of a subject were used. 
+	The skull stripped T1w and T2w images of a subject were used as reference images. 
 	\smallskip
 	
 
 \subsection{Feature Extraction \& Classifier} 
-	The following seven features were being extracted: three Coordinate Features, a T1w and T2w Intensity Feature and a T1w and T2w Gradient Intensity Feature.\\
+	The following seven features were extracted: three coordinate features, a T1w and T2w intensity feature and a T1w and T2w gradient intensity feature.\\
 	The classifier used was a Random Forest classifier. It consists of numerous individual decision trees acting as an ensemble learning method for classification.
-	The parameters to be chosen are the estimator and the tree depth. The estimator indicates the maximal number of decision trees. 
-	The tree depth indicates the depth of each tree in the forest.
-	This classifier tends to over-fit and caution has to be given when applying this classifier.
+	The parameters for such a classifier are the estimator and the tree depth. The estimator indicates the maximal number of decision trees whereas tree depth indicates the depth of each tree in the forest.
+	Random Forest classifier tend to overfit and caution has to be given when applying.
 	After applying a grid search the parameters for the estimator=20 and the tree depth=190 were chosen. 
 	
 	
@@ -230,9 +229,9 @@
 	
 	
 \subsection{Conducted experiment}
-	To analyse the influence of the different normalizations, all parameters have been kept for all runs. 
+	To analyse the influence of the different normalizations, all parameters have been kept the same for all runs. 
 	For each run, one out of the six normalization methods has been applied. One additional run has been conducted with no normalization method.
-	To generate reproducible results the same random seed has been set for all runs.  
+	To generate reproducible results, the same random seed has been set for all runs.  
 	
 \subsection{Evaluation}
 	To evaluate the segmentations obtained within this project the {\itshape Dice Similarity Coefficient} (DSC) as well as the {\itshape Hausdorff Distance} (HD) were applied.\\
@@ -280,7 +279,7 @@
 		\centering
 		%omit extension of file. pdflatex will convert to pdf automatically.
 		\includegraphics[width=0.5\textwidth]{compNorms.png}
-		\caption{Comparison between the ground truth image versus no normalization (top right) and two different normalizations. All images are from the same subject and the same brain localization.In the bottom row, the resulted segmentation applying the MinMax method on the left, and the Fuzzy C-Means method on the right, are visible. }
+		\caption{Comparison between the ground truth image versus no normalization (top right) and two different normalizations. All images are from the same subject and the same brain localization. In the bottom row, the resulted segmentation applying the MinMax method on the left, and the Fuzzy C-Means method on the right, are visible. }
 		\label{fig:e2}
 	\end{figure}
 % --------------------------------------------------------------
@@ -346,14 +345,14 @@
 	
 	Overall, no normalization method improved the segmentation significantly.
 	We assume the data sets are already similar because they were obtain with the same MRI machine at the same hospital. 
-	Additionally, bias field correction has been applied to all images. 
+	Additionally, bias field correction has already been applied to all images. 
 	Another issue is that the ground truth segmentation seems not to be the best reference. 
 	In figure \ref{fig:e1} it is visible that the ground truth has numerous black spots where there should be a segmentation. Also the segmentation looks irregular.\\
 	
 	For different brain regions, different normalization methods gave slightly better results than the ground truth. 
 	But still no normalization method gave better results for all the brain regions together.\\	
 	
-	If specific brain regions were segmented with the respective normalisations that had a positive effect on them, better overall results would be obtained. 
+	If specific brain regions were segmented with the respective normalization that had a positive effect on them, better overall results would be obtained. 
 	Even with this approach, the segmentation results would not be significantly improved because the individual improvements are too small.
 
 
@@ -362,10 +361,10 @@
 % --------------------------------------------------------------
 
 \section{Conclusion}
-	We were able to justify our hypothesis and stating that normalization has no important influence in the segmentation and labelling process of this five anatomical brain regions. \\
-	For further steps data sets should be obtain of different MRI machines from different hospitals and with different magnetic flux density.
-	Additionally, the images may be in a raw condition, without any pre process.
-	As a further improvement a more evolved and innovated machine learning approach could be applied, as for example a deep neuronal network.
+	We were able to justify our hypothesis and stating that normalization has no important influence in the segmentation and labelling process of the given five anatomical brain regions. \\
+	For further steps, data sets should be obtain from different MRI machines and different hospitals and with different magnetic flux density.
+	Additionally, the images may be in a raw condition, without any preprocess.
+	As a further improvement, a more evolved and innovated machine learning approach could be applied - for example a deep neural network.
 	
 % --------------------------------------------------------------
 % References

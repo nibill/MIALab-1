@@ -5,37 +5,36 @@ Reallocating 'name_of_file' (item size: 1) to 7 items.
 The style file: ieeetr.bst
 Reallocating 'name_of_file' (item size: 1) to 7 items.
 Database file #1: MIALab.bib
-Warning--I didn't find a database entry for "normalizations"
-You've used 3 entries,
+You've used 4 entries,
             1876 wiz_defined-function locations,
-            502 strings with 4435 characters,
-and the built_in function-call counts, 1195 in all, are:
-= -- 113
-> -- 51
+            505 strings with 4580 characters,
+and the built_in function-call counts, 1360 in all, are:
+= -- 124
+> -- 65
 < -- 0
-+ -- 18
-- -- 15
-* -- 89
-:= -- 168
-add.period$ -- 3
-call.type$ -- 3
-change.case$ -- 3
++ -- 23
+- -- 19
+* -- 100
+:= -- 194
+add.period$ -- 4
+call.type$ -- 4
+change.case$ -- 4
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 59
-empty$ -- 104
-format.name$ -- 15
-if$ -- 293
+cite$ -- 4
+duplicate$ -- 63
+empty$ -- 122
+format.name$ -- 19
+if$ -- 332
 int.to.chr$ -- 0
-int.to.str$ -- 3
+int.to.str$ -- 4
 missing$ -- 3
-newline$ -- 12
-num.names$ -- 3
-pop$ -- 9
+newline$ -- 15
+num.names$ -- 4
+pop$ -- 16
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 50
+skip$ -- 54
 stack$ -- 0
 substring$ -- 100
 swap$ -- 31
@@ -44,7 +43,6 @@ text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 9
-width$ -- 4
-write$ -- 33
-(There was 1 warning)
+while$ -- 10
+width$ -- 5
+write$ -- 40

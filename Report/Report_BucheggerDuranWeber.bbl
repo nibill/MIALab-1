@@ -18,4 +18,8 @@ A.~{de Brébisson} and G.~{Montana}, ``Deep neural networks for anatomical
   brain segmentation,'' in {\em 2015 IEEE Conference on Computer Vision and
   Pattern Recognition Workshops (CVPRW)}, pp.~20--28, 2015.
 
+\bibitem{reinhold2018}
+J.~C. Reinhold, B.~E. Dewey, A.~Carass, and J.~L. Prince, ``Evaluating the
+  impact of intensity normalization on mr image synthesis,'' 2018.
+
 \end{thebibliography}
