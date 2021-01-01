@@ -59,7 +59,7 @@ class ImageNormalization(pymia_fltr.Filter):
 
         # todo: normalize the image using numpy
         #warnings.warn('No normalization implemented. Returning unprocessed image.')
-        n_type = "gmm"
+        n_type = "histMatching"
         img_out = image
 
         #sitk.Normalize(image)
@@ -134,9 +134,9 @@ class ImageNormalization(pymia_fltr.Filter):
             allDataPath = os.path.dirname(path)
             firstFolder = os.listdir(allDataPath)[0]
             if weighted == 1:
-                refImg = sitk.ReadImage(os.path.join(allDataPath, firstFolder, 'T1native.nii.gz'))
+                    refImg = sitk.ReadImage( './data/RefHist100307T1.nii.gz')
             elif weighted == 2:
-                refImg = sitk.ReadImage(os.path.join(allDataPath, firstFolder, 'T2native.nii.gz'))
+                    refImg = sitk.ReadImage('./data/RefHist100307T2.nii.gz')
 
             img_out = sitk.HistogramMatching(image, refImg)
         
